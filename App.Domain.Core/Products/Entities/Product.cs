@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace App.Infra.Data.SqlServer.EF.Models;
+namespace App.Domain.Core.Products.Entities;
 
 public partial class Product
 {
@@ -23,15 +23,16 @@ public partial class Product
 
     public bool IsRemoved { get; set; }
 
-    public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
     public virtual ICollection<Image> Images { get; set; } = new List<Image>();
 
-    public virtual ICollection<OrderLine> OrderLines { get; set; } = new List<OrderLine>();
-
     public virtual ICollection<ProductsPrice> ProductsPrices { get; set; } = new List<ProductsPrice>();
+
+    public virtual OrderLine OrderLines { get; set; } = null!;
+
+    public virtual Auction Auctions { get; set; } = null!;
 
     public virtual Shop Shop { get; set; } = null!;
 

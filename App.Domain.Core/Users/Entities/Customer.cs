@@ -1,7 +1,8 @@
-﻿using System;
+﻿using App.Domain.Core.Products.Entities;
+using System;
 using System.Collections.Generic;
 
-namespace App.Infra.Data.SqlServer.EF.Models;
+namespace App.Domain.Core.Users.Entities;
 
 public partial class Customer
 {
@@ -15,7 +16,7 @@ public partial class Customer
 
     public string PostalCode { get; set; } = null!;
 
-    public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
+    public virtual Cart Carts { get; set; } = null!;
 
     public virtual City City { get; set; } = null!;
 

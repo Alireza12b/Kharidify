@@ -14,8 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Products\" />
-    <Folder Include="Users\" />
+    <Folder Include="Products\Contracts\" />
+    <Folder Include="Products\DTOs\" />
+    <Folder Include="Users\Contracts\" />
+    <Folder Include="Users\DTOs\" />
   </ItemGroup>
 
 </Project>

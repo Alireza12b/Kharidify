@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace App.Infra.Data.SqlServer.EF.Models;
+namespace App.Domain.Core.Products.Entities;
 
 public partial class Category
 {
@@ -9,7 +9,7 @@ public partial class Category
 
     public string Name { get; set; } = null!;
 
-    public virtual ICollection<Image> Images { get; set; } = new List<Image>();
+    public virtual Image Images { get; set; } = null!;
 
     public virtual ICollection<SubCategory> SubCategories { get; set; } = new List<SubCategory>();
 }

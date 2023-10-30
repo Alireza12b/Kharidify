@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace App.Infra.Data.SqlServer.EF.Models;
+namespace App.Domain.Core.Products.Entities;
 
 public partial class OrderStatus
 {
@@ -11,5 +11,5 @@ public partial class OrderStatus
 
     public DateTime Date { get; set; }
 
-    public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
+    public virtual Cart Carts { get; set; } = null!;
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using App.Domain.Core.Products.Entities;
+using App.Domain.Core.Users.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Infra.Data.SqlServer.EF.Models;
@@ -69,16 +71,6 @@ public partial class KharidifyDbContext : DbContext
                 .HasConstraintName("FK_Admin_User");
         });
 
-        modelBuilder.Entity<Auction>(entity =>
-        {
-            entity.Property(e => e.EndDate).HasColumnType("datetime");
-            entity.Property(e => e.StartDate).HasColumnType("datetime");
-
-            entity.HasOne(d => d.Product).WithMany(p => p.Auctions)
-                .HasForeignKey(d => d.ProductId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Auctions_Products");
-        });
 
         modelBuilder.Entity<Cart>(entity =>
         {
@@ -92,16 +84,6 @@ public partial class KharidifyDbContext : DbContext
             entity.HasOne(d => d.City).WithMany(p => p.Carts)
                 .HasForeignKey(d => d.CityId)
                 .HasConstraintName("FK_Carts_Cities");
-
-            entity.HasOne(d => d.Customer).WithMany(p => p.Carts)
-                .HasForeignKey(d => d.CustomerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Carts_Customer");
-
-            entity.HasOne(d => d.Status).WithMany(p => p.Carts)
-                .HasForeignKey(d => d.StatusId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Carts_OrderStatuses");
         });
 
         modelBuilder.Entity<Category>(entity =>
@@ -126,11 +108,6 @@ public partial class KharidifyDbContext : DbContext
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Comments_Products");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Comments)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Comments_User");
         });
 
         modelBuilder.Entity<Customer>(entity =>
@@ -139,11 +116,6 @@ public partial class KharidifyDbContext : DbContext
 
             entity.Property(e => e.AddressDetail).HasMaxLength(500);
             entity.Property(e => e.PostalCode).HasMaxLength(20);
-
-            entity.HasOne(d => d.City).WithMany(p => p.Customers)
-                .HasForeignKey(d => d.CityId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Customer_Customer");
 
             entity.HasOne(d => d.User).WithMany(p => p.Customers)
                 .HasForeignKey(d => d.UserId)
@@ -161,11 +133,6 @@ public partial class KharidifyDbContext : DbContext
             entity.Property(e => e.Address).HasMaxLength(300);
             entity.Property(e => e.IsRemoved).HasColumnName("isRemoved");
 
-            entity.HasOne(d => d.Categories).WithMany(p => p.Images)
-                .HasForeignKey(d => d.CategoriesId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Images_Categories");
-
             entity.HasOne(d => d.Products).WithMany(p => p.Images)
                 .HasForeignKey(d => d.ProductsId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -180,11 +147,6 @@ public partial class KharidifyDbContext : DbContext
                 .HasForeignKey(d => d.CartId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_CartLines_Carts");
-
-            entity.HasOne(d => d.Product).WithMany(p => p.OrderLines)
-                .HasForeignKey(d => d.ProductId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_CartLines_Products");
         });
 
         modelBuilder.Entity<OrderStatus>(entity =>
@@ -250,11 +212,6 @@ public partial class KharidifyDbContext : DbContext
                 .HasForeignKey(d => d.CityId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Shop_Cities");
-
-            entity.HasOne(d => d.Seller).WithMany(p => p.Shops)
-                .HasForeignKey(d => d.SellerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Shop_Seller");
         });
 
         modelBuilder.Entity<SubCategory>(entity =>

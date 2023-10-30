@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace App.Infra.Data.SqlServer.EF.Models;
+namespace App.Domain.Core.Products.Entities;
 
 public partial class Auction
 {
