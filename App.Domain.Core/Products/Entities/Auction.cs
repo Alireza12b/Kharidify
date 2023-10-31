@@ -17,6 +17,8 @@ public partial class Auction
 
     public double? HighestPrice { get; set; }
 
+    public bool IsActive { get; set; }
+
     public int? LastBuyerId { get; set; }
 
     public virtual Product Product { get; set; } = null!;

@@ -9,6 +9,8 @@ namespace App.Domain.Core.Products.DTOs
 {
     public class AuctionInputDto
     {
+        public int Id { get; set; }
+
         public int ProductId { get; set; }
 
         public DateTime EndDate { get; set; }
