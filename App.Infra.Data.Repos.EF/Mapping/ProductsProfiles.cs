@@ -15,6 +15,9 @@ namespace App.Infra.Data.Repos.EF.Mapping
         {
             CreateMap<Product, ProductInputDto>();
             CreateMap<Product, ProductOutputDto>();
+
+            CreateMap<ProductsPrice, ProductPriceInputDto>();
+            CreateMap<ProductsPrice, ProductPriceOutputDto>();
         }
     }
 }

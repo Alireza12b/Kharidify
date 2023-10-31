@@ -17,7 +17,8 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ImageAddress = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,7 +75,9 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -193,7 +196,9 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                     CityId = table.Column<int>(type: "int", nullable: false),
                     AdressDetail = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false)
+                    Phone = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -311,6 +316,7 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Message = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -337,18 +343,11 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Address = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     isRemoved = table.Column<bool>(type: "bit", nullable: false),
-                    ProductsId = table.Column<int>(type: "int", nullable: false),
-                    CategoriesId = table.Column<int>(type: "int", nullable: false)
+                    ProductsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Images", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Images_Categories_CategoriesId",
-                        column: x => x.CategoriesId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Images_Products",
                         column: x => x.ProductsId,
@@ -456,12 +455,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                 name: "IX_Customer_UserId",
                 table: "Customer",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Images_CategoriesId",
-                table: "Images",
-                column: "CategoriesId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Images_ProductsId",

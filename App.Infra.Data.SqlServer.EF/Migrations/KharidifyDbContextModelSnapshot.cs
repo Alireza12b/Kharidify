@@ -117,6 +117,10 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ImageAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -215,9 +219,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("CategoriesId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsRemoved")
                         .HasColumnType("bit")
                         .HasColumnName("isRemoved");
@@ -226,9 +227,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoriesId")
-                        .IsUnique();
 
                     b.HasIndex("ProductsId");
 
@@ -626,19 +624,11 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Products.Entities.Image", b =>
                 {
-                    b.HasOne("App.Domain.Core.Products.Entities.Category", "Categories")
-                        .WithOne("Images")
-                        .HasForeignKey("App.Domain.Core.Products.Entities.Image", "CategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("App.Domain.Core.Products.Entities.Product", "Products")
                         .WithMany("Images")
                         .HasForeignKey("ProductsId")
                         .IsRequired()
                         .HasConstraintName("FK_Images_Products");
-
-                    b.Navigation("Categories");
 
                     b.Navigation("Products");
                 });
@@ -770,9 +760,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Products.Entities.Category", b =>
                 {
-                    b.Navigation("Images")
-                        .IsRequired();
-
                     b.Navigation("SubCategories");
                 });
 

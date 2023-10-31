@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infra.Data.SqlServer.EF.Migrations
 {
     [DbContext(typeof(KharidifyDbContext))]
-    [Migration("20231031081450_FieldsUpdate")]
-    partial class FieldsUpdate
+    [Migration("20231031111321_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,6 +120,10 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ImageAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -160,6 +164,9 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Message")
                         .IsRequired()
@@ -215,9 +222,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int>("CategoriesId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsRemoved")
                         .HasColumnType("bit")
                         .HasColumnName("isRemoved");
@@ -226,9 +230,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoriesId")
-                        .IsUnique();
 
                     b.HasIndex("ProductsId");
 
@@ -410,6 +411,9 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                     b.Property<int>("Rank")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("RegisterDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("SellerId")
                         .HasColumnType("int");
 
@@ -547,6 +551,9 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
 
+                    b.Property<DateTime>("RegisterDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);
@@ -620,19 +627,11 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Products.Entities.Image", b =>
                 {
-                    b.HasOne("App.Domain.Core.Products.Entities.Category", "Categories")
-                        .WithOne("Images")
-                        .HasForeignKey("App.Domain.Core.Products.Entities.Image", "CategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("App.Domain.Core.Products.Entities.Product", "Products")
                         .WithMany("Images")
                         .HasForeignKey("ProductsId")
                         .IsRequired()
                         .HasConstraintName("FK_Images_Products");
-
-                    b.Navigation("Categories");
 
                     b.Navigation("Products");
                 });
@@ -764,9 +763,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Products.Entities.Category", b =>
                 {
-                    b.Navigation("Images")
-                        .IsRequired();
-
                     b.Navigation("SubCategories");
                 });
 

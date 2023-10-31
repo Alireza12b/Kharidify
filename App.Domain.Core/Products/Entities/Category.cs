@@ -9,7 +9,7 @@ public partial class Category
 
     public string Name { get; set; } = null!;
 
-    public virtual Image Images { get; set; } = null!;
+    public string ImageAddress { get; set; } = null!;
 
     public virtual ICollection<SubCategory> SubCategories { get; set; } = new List<SubCategory>();
 }
