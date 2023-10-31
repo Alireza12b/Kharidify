@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Domain.Core.Products.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,9 @@ namespace App.Domain.Core.Products.Contracts.Services
 {
     public interface ICartServices
     {
+        Task Create(CartInputDto cartInputDto, CancellationToken cancellationToken);
+        Task Update(CartInputDto cartInputDto, CancellationToken cancellationToken);
+        Task<List<CartOutputDto>> GetAll(CancellationToken cancellationToken);
+        Task<CartOutputDto> GetById(int Id, CancellationToken cancellationToken);
     }
 }
