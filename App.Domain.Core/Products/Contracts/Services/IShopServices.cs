@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Domain.Core.Products.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace App.Domain.Core.Products.Contracts.Services
 {
     public interface IShopServices
     {
+        Task Create(ShopInputDto shopInputDto, CancellationToken cancellationToken);
+        Task Update(ShopInputDto shopInputDto, CancellationToken cancellationToken);
+        Task DeActive(int Id, CancellationToken cancellationToken);
+        Task<List<ShopOutputDto>> GetAll(CancellationToken cancellationToken);
+        Task<ShopOutputDto> GetById(int Id, CancellationToken cancellationToken);
     }
 }
