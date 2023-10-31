@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Core.Products.Contracts.Services
 {
-    internal interface IShopServices
+    public interface IShopServices
     {
     }
 }
