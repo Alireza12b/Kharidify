@@ -1,4 +1,5 @@
-﻿using App.Domain.Core.Products.DTOs;
+﻿using App.Domain.Core.Products.Contracts.Repositories;
+using App.Domain.Core.Products.DTOs;
 using App.Infra.Data.SqlServer.EF.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
