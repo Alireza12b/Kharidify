@@ -10,6 +10,8 @@ namespace App.Domain.Core.Products.DTOs
 {
     public class CartInputDto
     {
+        public int Id { get; set; }
+
         public int CustomerId { get; set; }
 
         public bool IsPaid { get; set; }
