@@ -14,8 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Products\Contracts\" />
-    <Folder Include="Products\DTOs\" />
+    <Folder Include="Products\Contracts\AppServices\" />
+    <Folder Include="Products\Contracts\Repositories\" />
+    <Folder Include="Products\Contracts\Services\" />
     <Folder Include="Users\Contracts\" />
     <Folder Include="Users\DTOs\" />
   </ItemGroup>

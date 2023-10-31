@@ -17,7 +17,7 @@ public partial class Product
 
     public int TotalQuantity { get; set; }
 
-    public DateTime RegisterDate { get; set; }
+    public DateTime RegisterDate { get; set; } = DateTime.Now;
 
     public bool IsActive { get; set; }
 

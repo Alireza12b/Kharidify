@@ -9,7 +9,7 @@ public partial class OrderStatus
 
     public string Status { get; set; } = null!;
 
-    public DateTime Date { get; set; }
+    public DateTime Date { get; set; } = DateTime.Now;
 
     public virtual Cart Carts { get; set; } = null!;
 }

@@ -9,7 +9,7 @@ public partial class ProductsPrice
 
     public int ProductId { get; set; }
 
-    public DateTime FromDate { get; set; }
+    public DateTime FromDate { get; set; } = DateTime.Now;
 
     public DateTime? ToDate { get; set; }
 

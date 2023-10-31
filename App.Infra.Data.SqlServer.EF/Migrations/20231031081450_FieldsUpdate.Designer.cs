@@ -4,6 +4,7 @@ using App.Infra.Data.SqlServer.EF.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infra.Data.SqlServer.EF.Migrations
 {
     [DbContext(typeof(KharidifyDbContext))]
-    partial class KharidifyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231031081450_FieldsUpdate")]
+    partial class FieldsUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,9 +160,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Message")
                         .IsRequired()
@@ -410,9 +410,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                     b.Property<int>("Rank")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("RegisterDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("SellerId")
                         .HasColumnType("int");
 
@@ -549,9 +546,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("nvarchar(11)");
-
-                    b.Property<DateTime>("RegisterDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

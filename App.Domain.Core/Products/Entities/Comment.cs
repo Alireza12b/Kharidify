@@ -12,6 +12,8 @@ public partial class Comment
 
     public int UserId { get; set; }
 
+    public DateTime Date { get; set; } = DateTime.Now;
+
     public int ProductId { get; set; }
 
     public virtual Product Product { get; set; } = null!;

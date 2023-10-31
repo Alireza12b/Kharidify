@@ -16,6 +16,10 @@ public partial class User
 
     public string? Email { get; set; }
 
+    public DateTime RegisterDate { get; set; } = DateTime.Now;
+
+    public bool IsActive { get; set; }
+
     public virtual ICollection<Admin> Admins { get; set; } = new List<Admin>();
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();

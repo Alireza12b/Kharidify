@@ -22,6 +22,10 @@ public partial class Shop
 
     public string Phone { get; set; } = null!;
 
+    public bool IsActive { get; set; }
+
+    public DateTime RegisterDate { get; set; } = DateTime.Now;
+
     public virtual City City { get; set; } = null!;
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();

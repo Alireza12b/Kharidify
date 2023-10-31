@@ -7,7 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mapping\" />
+    <Folder Include="Users\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\App.Infra.Data.SqlServer.EF\App.Infra.Data.SqlServer.EF.csproj" />
   </ItemGroup>
 
 </Project>
