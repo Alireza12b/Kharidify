@@ -2,6 +2,7 @@
 using App.Domain.Core.Products.DTOs;
 using App.Domain.Core.Products.Entities;
 using App.Infra.Data.SqlServer.EF.Models;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,85 +15,49 @@ namespace App.Infra.Data.Repos.EF.Products
     public class ProductRepository : IProductRepository
     {
         private readonly KharidifyDbContext _db;
+        private readonly IMapper _mapper;
 
-        public ProductRepository(KharidifyDbContext db)
+        public ProductRepository(KharidifyDbContext db, IMapper mapper)
         {
-            _db = db;          
+            _db = db;
+            _mapper = mapper;
         }
 
-        public async Task<int> Add(ProductInputDto productInputDto, CancellationToken cancellationToken)
+        public async Task Create(ProductInputDto productInputDto, CancellationToken cancellationToken)
         {
-            var product = new Product()
-            {
-                Name = productInputDto.Name,
-                ShopId = productInputDto.ShopId,
-                SubCategoriesId = productInputDto.SubCategoriesId,
-                Description = productInputDto.Description,
-                TotalQuantity = productInputDto.TotalQuantity,
-                IsActive = productInputDto.IsActive,
-                SubCategories = productInputDto.SubCategories,
-                Shop = productInputDto.Shop,
-            };
-
+            var product = _mapper.Map<Product>(productInputDto);
             await _db.AddAsync(product, cancellationToken);
             await _db.SaveChangesAsync(cancellationToken);
-            return product.Id;
         }
 
-        public async Task<int> Update(ProductInputDto productInputDto, CancellationToken cancellationToken)
+        public async Task Update(ProductInputDto productInputDto, CancellationToken cancellationToken)
         {
-            var product = await _db.Products.FirstOrDefaultAsync(p => p.Id == productInputDto.Id);
-
-            product.Name = productInputDto.Name;
-            product.ShopId = productInputDto.ShopId;
-            product.SubCategoriesId = productInputDto.SubCategoriesId;
-            product.Description = productInputDto.Description;
-            product.TotalQuantity = productInputDto.TotalQuantity;
-            product.IsActive = productInputDto.IsActive;
-
+            var product = await _mapper.ProjectTo<ProductInputDto>(_db.Set<ProductInputDto>())
+                .Where(x => x.Id == productInputDto.Id).FirstOrDefaultAsync();
+            _mapper.Map(productInputDto, product);
             await _db.SaveChangesAsync(cancellationToken);
-            return product.Id;
         }
 
-        public async Task<int> Delete(int Id, CancellationToken cancellationToken)
+        public async Task Delete(int Id, CancellationToken cancellationToken)
         {
             var product = await _db.Products.FindAsync(Id);
             product.IsRemoved = true;
-            await _db.SaveChangesAsync();
-            return product.Id;
+            await _db.SaveChangesAsync(cancellationToken);
         }
 
         public async Task<List<ProductOutputDto>> GetAll(CancellationToken cancellationToken)
         {
-            var products = _db.Products.AsNoTracking().Select(product => new ProductOutputDto
-            {
-                Id = product.Id,
-                ShopId = product.ShopId,
-                SubCategoriesId = product.SubCategoriesId,
-                Name = product.Name,
-                Description = product.Description,
-                TotalQuantity = product.TotalQuantity,
-                IsActive = product.IsActive,
-            });
+            var products = _mapper.Map<List<ProductOutputDto>>(await _db.Products.AsNoTracking().Include(x => x.SubCategories)
+                .ToListAsync(cancellationToken));
 
             return products.ToList();
         }
 
         public async Task<ProductOutputDto> GetById(int Id, CancellationToken cancellationToken)
         {
-            var product = await _db.Products.FirstOrDefaultAsync(p => p.Id == Id);
-            var productOutPut = new ProductOutputDto()
-            {
-                Id = product.Id,
-                ShopId = product.ShopId,
-                SubCategoriesId = product.SubCategoriesId,
-                Name = product.Name,
-                Description = product.Description,
-                TotalQuantity = product.TotalQuantity,
-                IsActive = product.IsActive,
-            };
+            var product = await _db.Products.AsNoTracking().Where(p => p.Id == Id).FirstOrDefaultAsync();
 
-            return productOutPut;
+            return _mapper.Map(product, new ProductOutputDto());
         }
     }
 }

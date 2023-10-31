@@ -9,9 +9,9 @@ namespace App.Domain.Core.Products.Contracts.Repositories
 {
     public interface IProductRepository
     {
-        Task<int> Add(ProductInputDto productInputDto, CancellationToken cancellationToken);
-        Task<int> Update(ProductInputDto productInputDto, CancellationToken cancellationToken);
-        Task<int> Delete(int Id, CancellationToken cancellationToken);
+        Task Create(ProductInputDto productInputDto, CancellationToken cancellationToken);
+        Task Update(ProductInputDto productInputDto, CancellationToken cancellationToken);
+        Task Delete(int Id, CancellationToken cancellationToken);
         Task<List<ProductOutputDto>> GetAll(CancellationToken cancellationToken);
         Task<ProductOutputDto> GetById(int Id, CancellationToken cancellationToken);
     }

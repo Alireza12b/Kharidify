@@ -18,6 +18,34 @@ namespace App.Infra.Data.Repos.EF.Mapping
 
             CreateMap<ProductsPrice, ProductPriceInputDto>();
             CreateMap<ProductsPrice, ProductPriceOutputDto>();
+
+            CreateMap<Auction, AuctionInputDto>();
+            CreateMap<Auction, AuctionOutputDto>();
+
+            CreateMap<Cart, CartInputDto>();
+            CreateMap<Cart, CartOutputDto>();
+
+            CreateMap<Comment, CommentInputDto>();
+            CreateMap<Comment, CommentOutputDto>();
+
+            CreateMap<OrderLine, OrderLineInputDto>();
+            CreateMap<OrderLine, OrderLineOutputDto>();
+
+            CreateMap<OrderStatus, OrderStatusInputDto>();
+            CreateMap<OrderStatus, OrderStatusOutputDto>();
+
+            CreateMap<Image, ImageInputDto>();
+            CreateMap<Image, ImageOutputDto>();
+
+            CreateMap<Shop, ShopInputDto>();
+            CreateMap<Shop, ShopOutputDto>();
+
+            CreateMap<Category, CategoryOutputDto>();
+            CreateMap<SubCategory, SubCategoryOutputDto>();
+            CreateMap<City, CityOutputDto>();
+            CreateMap<Province, ProvinceOutputDto>();
+
+
         }
     }
 }
