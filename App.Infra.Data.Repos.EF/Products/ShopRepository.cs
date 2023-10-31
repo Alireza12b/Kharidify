@@ -53,11 +53,11 @@ namespace App.Infra.Data.Repos.EF.Products
             return shops.ToList();
         }
 
-        public async Task<ProductOutputDto> GetById(int Id, CancellationToken cancellationToken)
+        public async Task<ShopOutputDto> GetById(int Id, CancellationToken cancellationToken)
         {
             var shop = await _db.Shops.AsNoTracking().Include(x => x.Products).Where(p => p.Id == Id).FirstOrDefaultAsync(cancellationToken);
 
-            return _mapper.Map(shop, new ProductOutputDto());
+            return _mapper.Map(shop, new ShopOutputDto());
         }
     }
 }

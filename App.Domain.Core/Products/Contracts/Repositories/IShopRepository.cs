@@ -13,6 +13,6 @@ namespace App.Domain.Core.Products.Contracts.Repositories
         Task Update(ShopInputDto shopInputDto, CancellationToken cancellationToken);
         Task DeActive(int Id, CancellationToken cancellationToken);
         Task<List<ShopOutputDto>> GetAll(CancellationToken cancellationToken);
-        Task<ProductOutputDto> GetById(int Id, CancellationToken cancellationToken);
+        Task<ShopOutputDto> GetById(int Id, CancellationToken cancellationToken);
     }
 }
