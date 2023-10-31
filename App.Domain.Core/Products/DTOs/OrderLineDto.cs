@@ -8,6 +8,8 @@ namespace App.Domain.Core.Products.DTOs
 {
     public class OrderLineInputDto
     {
+        public int Id { get; set; }
+
         public int CartId { get; set; }
 
         public int ProductId { get; set; }
