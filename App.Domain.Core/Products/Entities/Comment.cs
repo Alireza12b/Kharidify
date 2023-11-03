@@ -14,6 +14,10 @@ public partial class Comment
 
     public DateTime Date { get; set; } = DateTime.Now;
 
+    public bool isActive { get; set; }
+
+    public bool IsRemoved { get; set; }
+
     public int ProductId { get; set; }
 
     public virtual Product Product { get; set; } = null!;

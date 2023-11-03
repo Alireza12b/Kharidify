@@ -4,6 +4,7 @@ using App.Infra.Data.SqlServer.EF.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infra.Data.SqlServer.EF.Migrations
 {
     [DbContext(typeof(KharidifyDbContext))]
-    partial class KharidifyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231103130623_init2")]
+    partial class init2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,9 +78,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
                     b.Property<bool>("IsCanceled")
                         .HasColumnType("bit");
-
-                    b.Property<float>("SuggestedPrice")
-                        .HasColumnType("real");
 
                     b.HasKey("Id");
 

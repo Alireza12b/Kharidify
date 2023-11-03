@@ -22,7 +22,11 @@ public partial class Shop
 
     public string Phone { get; set; } = null!;
 
+    public int SellsCount { get; set; }
+
     public bool IsActive { get; set; }
+
+    public bool IsRemoved { get; set; }
 
     public DateTime RegisterDate { get; set; } = DateTime.Now;
 

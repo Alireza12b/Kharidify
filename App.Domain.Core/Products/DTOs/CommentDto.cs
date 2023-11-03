@@ -14,6 +14,10 @@ namespace App.Domain.Core.Products.DTOs
 
         public string Message { get; set; } = null!;
 
+        public bool isActive { get; set; }
+
+        public bool IsRemoved { get; set; }
+
         public int UserId { get; set; }
 
         public int ProductId { get; set; }
@@ -24,6 +28,10 @@ namespace App.Domain.Core.Products.DTOs
         public int Id { get; set; }
 
         public string Message { get; set; } = null!;
+
+        public bool isActive { get; set; }
+
+        public bool IsRemoved { get; set; }
 
         public int UserId { get; set; }
 

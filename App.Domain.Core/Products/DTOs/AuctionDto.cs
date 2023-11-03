@@ -15,8 +15,6 @@ namespace App.Domain.Core.Products.DTOs
 
         public DateTime EndDate { get; set; }
 
-        public double StartPrice { get; set; }
-
         public double? HighestPrice { get; set; }
 
         public bool IsActive { get; set; }
@@ -35,8 +33,6 @@ namespace App.Domain.Core.Products.DTOs
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
-
-        public double StartPrice { get; set; }
 
         public double? HighestPrice { get; set; }
 

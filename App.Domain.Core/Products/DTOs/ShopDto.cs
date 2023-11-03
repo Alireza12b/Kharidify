@@ -27,7 +27,7 @@ namespace App.Domain.Core.Products.DTOs
 
         public bool IsActive { get; set; }
 
-        public DateTime RegisterDate { get; set; } = DateTime.Now;
+        public int SellsCount { get; set; }
     }
 
     public class ShopOutputDto
@@ -50,7 +50,7 @@ namespace App.Domain.Core.Products.DTOs
 
         public bool IsActive { get; set; }
 
-        public DateTime RegisterDate { get; set; } = DateTime.Now;
+        public int SellsCount { get; set; }
 
         public virtual ICollection<Product> Products { get; set; } = new List<Product>();
     }

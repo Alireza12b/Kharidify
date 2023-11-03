@@ -13,8 +13,6 @@ public partial class Auction
 
     public DateTime EndDate { get; set; }
 
-    public double StartPrice { get; set; }
-
     public double? HighestPrice { get; set; }
 
     public bool IsActive { get; set; }
@@ -24,4 +22,6 @@ public partial class Auction
     public int? LastBuyerId { get; set; }
 
     public virtual Product Product { get; set; } = null!;
+
+    public virtual ICollection<AuctionBuyers> AuctionBuyers { get; set; } = new List<AuctionBuyers>();
 }
