@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using App.Domain.Core.Products.Entities;
 using App.Domain.Core.Users.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Infra.Data.SqlServer.EF.Models;
 
-public partial class KharidifyDbContext : DbContext
+public partial class KharidifyDbContext : IdentityDbContext<User, IdentityRole<int>,int>
 {
     public KharidifyDbContext()
     {
@@ -15,6 +17,11 @@ public partial class KharidifyDbContext : DbContext
     public KharidifyDbContext(DbContextOptions<KharidifyDbContext> options)
         : base(options)
     {
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.EnableSensitiveDataLogging();
     }
 
     public virtual DbSet<Admin> Admins { get; set; }
@@ -57,6 +64,7 @@ public partial class KharidifyDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
         modelBuilder.Entity<Admin>(entity =>
         {
             entity.ToTable("Admin");
@@ -233,6 +241,8 @@ public partial class KharidifyDbContext : DbContext
         });
 
         OnModelCreatingPartial(modelBuilder);
+
+        base.OnModelCreating(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

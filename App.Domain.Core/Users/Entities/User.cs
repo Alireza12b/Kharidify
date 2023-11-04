@@ -1,12 +1,13 @@
 ﻿using App.Domain.Core.Products.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 
 namespace App.Domain.Core.Users.Entities;
 
-public partial class User
+public partial class User : IdentityUser<int>
 {
-    public int Id { get; set; }
+    public override int Id { get; set; }
 
     public string FirstName { get; set; } = null!;
 
@@ -19,6 +20,8 @@ public partial class User
     public DateTime RegisterDate { get; set; } = DateTime.Now;
 
     public bool IsActive { get; set; }
+
+    public bool IsRemoved { get; set; }
 
     public virtual ICollection<Admin> Admins { get; set; } = new List<Admin>();
 

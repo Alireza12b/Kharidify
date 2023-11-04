@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Core.Products.Entities
 {
-    public class AuctionBuyers
+    public partial class AuctionBuyers
     {
         public int Id { get; set; }
 
