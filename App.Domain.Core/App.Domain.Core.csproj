@@ -14,9 +14,4 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.13" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Users\Contracts\" />
-    <Folder Include="Users\DTOs\" />
-  </ItemGroup>
-
 </Project>

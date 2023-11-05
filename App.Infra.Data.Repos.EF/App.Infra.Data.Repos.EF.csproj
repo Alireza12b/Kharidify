@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Users\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\App.Infra.Data.SqlServer.EF\App.Infra.Data.SqlServer.EF.csproj" />
   </ItemGroup>
 

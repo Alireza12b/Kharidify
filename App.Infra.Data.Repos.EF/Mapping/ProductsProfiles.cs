@@ -1,5 +1,7 @@
 ﻿using App.Domain.Core.Products.DTOs;
 using App.Domain.Core.Products.Entities;
+using App.Domain.Core.Users.DTOs;
+using App.Domain.Core.Users.Entities;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,12 @@ namespace App.Infra.Data.Repos.EF.Mapping
     {
         public ProductsProfiles()
         {
+            CreateMap<Customer, CustomerDto>();
+            CreateMap<Seller, SellerDto>();
+            CreateMap<User, UserDto>();
+            CreateMap<UserDto, SellerDto>();
+            CreateMap<UserDto, CustomerDto>();
+
             CreateMap<Product, ProductInputDto>();
             CreateMap<Product, ProductOutputDto>();
 

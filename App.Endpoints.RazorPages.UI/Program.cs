@@ -1,4 +1,5 @@
 using App.Domain.Core.Users.Entities;
+using App.Infra.Data.Repos.EF.DependencyInjections;
 using App.Infra.Data.SqlServer.EF.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+
+builder.Services.AddInfrastructure();
+builder.Services.AddServices();
+builder.Services.AddAppServices();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 

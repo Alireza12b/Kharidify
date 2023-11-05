@@ -13,8 +13,6 @@ public partial class User : IdentityUser<int>
 
     public string LastName { get; set; } = null!;
 
-    public string Phone { get; set; } = null!;
-
     public string? Email { get; set; }
 
     public DateTime RegisterDate { get; set; } = DateTime.Now;
@@ -23,11 +21,11 @@ public partial class User : IdentityUser<int>
 
     public bool IsRemoved { get; set; }
 
-    public virtual ICollection<Admin> Admins { get; set; } = new List<Admin>();
+    public virtual Admin Admin { get; set; } = null!;
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
-    public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
+    public virtual Customer Customer { get; set; } = null!;
 
-    public virtual ICollection<Seller> Sellers { get; set; } = new List<Seller>();
+    public virtual Seller Seller { get; set; } = null!;
 }

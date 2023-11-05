@@ -1,6 +1,8 @@
 ﻿using App.Domain.Core.Products.Contracts.Repositories;
 using App.Domain.Core.Products.Entities;
+using App.Domain.Core.Users.Contracts;
 using App.Infra.Data.Repos.EF.Products;
+using App.Infra.Data.Repos.EF.Users;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,7 @@ namespace App.Infra.Data.Repos.EF.DependencyInjections
             services.AddScoped<IProvinceRepository ,ProvinceRepository>();
             services.AddScoped<IShopRepository ,ShopRepository>();
             services.AddScoped<ISubCategoryRepository ,SubCategoryRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
