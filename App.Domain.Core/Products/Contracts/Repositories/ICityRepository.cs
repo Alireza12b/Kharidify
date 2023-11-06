@@ -11,5 +11,7 @@ namespace App.Domain.Core.Products.Contracts.Repositories
     {
         Task<List<CityOutputDto>> GetAll(CancellationToken cancellationToken);
         Task<CityOutputDto> GetById(int Id, CancellationToken cancellationToken);
+        Task<List<CityOutputDto>> GetByProvinceId(int provinceId, CancellationToken cancellationToken);
+        Task<int> GetCityIdByName(string name, CancellationToken cancellationToken);
     }
 }

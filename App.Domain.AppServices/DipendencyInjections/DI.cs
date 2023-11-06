@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.Products.Contracts.AppServices;
+using App.Domain.Core.Users.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace App.Domain.AppServices.DipendencyInjections
     {
         public static IServiceCollection AddAppServices(this IServiceCollection services)
         {
-            
+            services.AddScoped<IUserAppServices, UserAppServices>();
             return services;
         }
     }

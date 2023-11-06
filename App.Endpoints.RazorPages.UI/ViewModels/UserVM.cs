@@ -1,14 +1,9 @@
 ﻿using App.Domain.Core.Products.Entities;
 using App.Domain.Core.Users.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace App.Domain.Core.Users.DTOs
+namespace App.Endpoints.RazorPages.UI.ViewModels
 {
-    public class UserDto
+    public class UserVM
     {
         public int Id { get; set; }
         public string FirstName { get; set; } = null!;
@@ -22,13 +17,12 @@ namespace App.Domain.Core.Users.DTOs
         public string? Role { get; set; }
         public List<string> Roles { get; set; }
         public string? Province { get; set; }
-        public string? City { get; set; }
-        public int CityId { get; set; }
+        public string City { get; set; }
         public string? AddressDetail { get; set; }
         public string? PostalCode { get; set; }
     }
 
-    public class CustomerDto
+    public class CustomerVM
     {
         public int Id { get; set; }
 
@@ -41,7 +35,7 @@ namespace App.Domain.Core.Users.DTOs
         public string PostalCode { get; set; } = null!;
     }
 
-    public class SellerDto
+    public class SellerVM
     {
         public int Id { get; set; }
 

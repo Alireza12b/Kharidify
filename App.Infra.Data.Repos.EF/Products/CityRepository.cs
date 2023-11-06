@@ -36,5 +36,21 @@ namespace App.Infra.Data.Repos.EF.Products
 
             return _mapper.Map(city, new CityOutputDto());
         }
+
+        public async Task<List<CityOutputDto>> GetByProvinceId(int provinceId, CancellationToken cancellationToken)
+        {
+            var cities = await _db.Cities
+            .Where(c => c.ProvinceId == provinceId)
+            .ToListAsync(cancellationToken);
+
+            return _mapper.Map<List<CityOutputDto>>(cities);
+        }
+
+        public async Task<int> GetCityIdByName(string name, CancellationToken cancellationToken)
+        {
+            var city = await _db.Cities.AsNoTracking().Include(x => x.Carts).Where(p => p.Name == name).FirstOrDefaultAsync(cancellationToken);
+
+            return city.Id;
+        }
     }
 }

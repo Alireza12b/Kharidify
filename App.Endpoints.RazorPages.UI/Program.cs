@@ -1,14 +1,23 @@
+using App.Domain.AppServices.DipendencyInjections;
 using App.Domain.Core.Users.Entities;
+using App.Domain.Services.DipendencyInjections;
+using App.Endpoints.RazorPages.UI.ViewModels;
 using App.Infra.Data.Repos.EF.DependencyInjections;
+using App.Infra.Data.Repos.EF.Mapping;
 using App.Infra.Data.SqlServer.EF.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddMvc();
+
+builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(ProductsProfiles)));
+builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingUi)));
 
 
 builder.Services.AddInfrastructure();

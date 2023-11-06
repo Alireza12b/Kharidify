@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using App.Domain.Core.Products.Entities;
 using App.Domain.Core.Users.Entities;
+using App.Infra.Data.SqlServer.EF.Configs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -65,19 +67,6 @@ public partial class KharidifyDbContext : IdentityDbContext<User, IdentityRole<i
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
-        modelBuilder.Entity<Admin>(entity =>
-        {
-            entity.ToTable("Admin");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
-
-            entity.HasOne(d => d.User).WithMany(p => p.Admins)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Admin_User");
-        });
-
-
         modelBuilder.Entity<Cart>(entity =>
         {
             entity.Property(e => e.AddressDetail).HasMaxLength(500);
@@ -97,14 +86,6 @@ public partial class KharidifyDbContext : IdentityDbContext<User, IdentityRole<i
             entity.Property(e => e.Name).HasMaxLength(50);
         });
 
-        modelBuilder.Entity<City>(entity =>
-        {
-            entity.Property(e => e.Name).HasMaxLength(50);
-
-            entity.HasOne(d => d.Province).WithMany(p => p.Cities)
-                .HasForeignKey(d => d.ProvinceId)
-                .HasConstraintName("FK_Cities_Provinces");
-        });
 
         modelBuilder.Entity<Comment>(entity =>
         {
@@ -116,18 +97,6 @@ public partial class KharidifyDbContext : IdentityDbContext<User, IdentityRole<i
                 .HasConstraintName("FK_Comments_Products");
         });
 
-        modelBuilder.Entity<Customer>(entity =>
-        {
-            entity.ToTable("Customer");
-
-            entity.Property(e => e.AddressDetail).HasMaxLength(500);
-            entity.Property(e => e.PostalCode).HasMaxLength(20);
-
-            entity.HasOne(d => d.User).WithMany(p => p.Customers)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Customer_User");
-        });
 
         modelBuilder.Entity<DiscountCode>(entity =>
         {
@@ -190,20 +159,6 @@ public partial class KharidifyDbContext : IdentityDbContext<User, IdentityRole<i
                 .HasConstraintName("FK_ProductsPrices_ProductsPrices");
         });
 
-        modelBuilder.Entity<Province>(entity =>
-        {
-            entity.Property(e => e.Name).HasMaxLength(50);
-        });
-
-        modelBuilder.Entity<Seller>(entity =>
-        {
-            entity.ToTable("Seller");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Sellers)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Seller_User");
-        });
 
         modelBuilder.Entity<Shop>(entity =>
         {
@@ -237,7 +192,6 @@ public partial class KharidifyDbContext : IdentityDbContext<User, IdentityRole<i
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.FirstName).HasMaxLength(20);
             entity.Property(e => e.LastName).HasMaxLength(30);
-            entity.Property(e => e.Phone).HasMaxLength(11);
         });
 
         OnModelCreatingPartial(modelBuilder);

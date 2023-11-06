@@ -50,7 +50,7 @@ namespace App.Infra.Data.Repos.EF.Mapping
 
             CreateMap<Category, CategoryOutputDto>();
             CreateMap<SubCategory, SubCategoryOutputDto>();
-            CreateMap<City, CityOutputDto>();
+            CreateMap<City, CityOutputDto>().ReverseMap();
             CreateMap<Province, ProvinceOutputDto>();
 
 

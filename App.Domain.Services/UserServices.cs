@@ -20,6 +20,7 @@ namespace App.Domain.Services
 
         public async Task<IdentityResult> Create(UserDto userDto, CancellationToken cancellationToken)
         {
+            
             return await _userRepository.Create(userDto, cancellationToken);
         }
     }

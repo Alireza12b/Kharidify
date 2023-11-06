@@ -1,0 +1,112 @@
+﻿@page
+@model App.Endpoints.RazorPages.UI.Areas.Account.Pages.RegisterModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "ثبت نام";
+}
+
+<main class="main pages">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" rel="nofollow">صفحه اصلی<i class="fi-rs-home mr-5"></i></a>
+                <span></span> صفحات <span></span> ثبت نام
+            </div>
+        </div>
+    </div>
+    <div class="page-content pt-150 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8">
+                            <div class="login_wrap widget-taber-content background-white">
+                                <div class="padding_eight_all bg-white">
+                                    <div class="heading_s1">
+                                        <h1 class="mb-5">ساخت اکانت</h1>
+                                        <p class="mb-30">اکانت دارید ؟ <a href="page-login.html">وارد شوید</a></p>
+                                    </div>
+                                    <form method="post" asp-page-handler="Create">
+                                        <div class="form-group">
+                                            <input type="text" required="" name="firstname" placeholder="نام">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" required="" name="lastname" placeholder="نام خانوادگی">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" required="" name="phone" placeholder="تلفن">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" required="" name="email" placeholder="ایمیل">
+                                        </div>
+                                        <div class="form-group">
+                                            <input required="" type="password" name="password" placeholder="رمز عبور">
+                                        </div>
+                                        <div class="form-group">
+                                            <input required="" type="password" name="confirmpassword" placeholder="تایید رمز عبور">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="">نوع کاربر</label>
+                                            <div class="custome-radio">
+                                                <select class="custome-radio" name="Role" id="roleDropdown">
+                                                    <option selected style="display : none">انتخاب کنید</option>
+                                                    <option value="Customer">مشتری هستم</option>
+                                                    <option value="Seller">فروشنده هستم</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" id="provinceGroup" style="display: none;">
+                                            <input type="text" required="" name="City" placeholder="شهر">
+                                        </div>
+
+                                        @* <div class="form-group" id="provinceGroup"style="display: none;">
+                                            <label class="">استان</label>
+                                            <div class="custome-radio">
+                                                <select asp-for="SelectedProvinceId" class="custome-radio" id="provinceDropdown">
+                                                    <option value="0" style="display : none">انتخاب کنید</option>
+                                                    @foreach (var item in Model.Provinces)
+                                                    {
+                                                        <option value="@item.Id">@item.Name</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="cityGroup" style="display: none;">
+                                            <label class="">شهر</label>
+                                            <div class="custome-radio">
+                                                <select name="CityId" class="custome-radio" id="cityDropdown">
+                                                    <option value="" style="display : none">انتخاب کنید</option>
+                                                    <option value="1">اسکو</option>
+                                                    @if (Model.Cities != null)
+                                                    {
+                                                        @foreach (var item in Model.Cities)
+                                                        {
+                                                            <option value="@item.Id = 1">@item.Name</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div> *@
+
+                                        <div class="form-group" id="addressGroup" style="display: none;">
+                                            <input type="text" required="" name="addressdetail" placeholder="آدرس کامل خود را وارد کنید">
+                                        </div>
+                                        <div class="form-group" id="postalCodeGroup" style="display: none;">
+                                            <input type="text" required="" name="postalcode" placeholder="کد پستی">
+                                        </div>
+
+                                        <div class="form-group mb-30">
+                                            <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold" name="login">ثبت نام</button>
+                                        </div>
+                                        <p class="font-xs text-muted"><strong>نکته:</strong>از داده های شخصی شما برای پشتیبانی از تجربه شما در سراسر این وب سایت، مدیریت دسترسی به حساب شما و سایر اهدافی که در خط مشی رازداری ما توضیح داده شده است استفاده می شود.</p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

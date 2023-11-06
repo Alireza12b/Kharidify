@@ -1031,5 +1031,36 @@
     <!-- Template  JS -->
     <script src="~/assets/js/main48b2.js?v=4.0"></script>
     <script src="~/assets/js/shop48b2.js?v=4.0"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            var roleDropdown = $("#roleDropdown");
+            var provinceDropdown = $("#provinceDropdown");
+            var cityDropdown = $("#cityDropdown");
+
+            var provinceGroup = $("#provinceGroup");
+            var cityGroup = $("#cityGroup");
+            var postalCodeGroup = $("#postalCodeGroup");
+            var addressGroup = $("#addressGroup");
+
+            roleDropdown.on("change", function () {
+                var selectedRole = roleDropdown.val();
+
+                if (selectedRole === "Customer") {
+                    provinceGroup.show();
+                    cityGroup.show();
+                    postalCodeGroup.show();
+                    addressGroup.show();
+                } else {
+                    provinceGroup.hide();
+                    cityGroup.hide();
+                    postalCodeGroup.hide();
+                    addressGroup.hide();
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>

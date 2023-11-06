@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infra.Data.Repos.EF", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infra.Data.SqlServer.EF", "App.Infra.Data.SqlServer.EF\App.Infra.Data.SqlServer.EF.csproj", "{6F9FA43C-3D56-44FB-A0FC-61D43B02E5B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Endpoints.RazorPages.UI", "App.Endpoints.RazorPages.UI\App.Endpoints.RazorPages.UI.csproj", "{D9450F3C-1ADC-407D-B8A6-2F8167732752}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Endpoints.RazorPages.UI", "App.Endpoints.RazorPages.UI\App.Endpoints.RazorPages.UI.csproj", "{D9450F3C-1ADC-407D-B8A6-2F8167732752}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
