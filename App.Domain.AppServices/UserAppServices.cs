@@ -26,5 +26,15 @@ namespace App.Domain.AppServices
             userDto.CityId = await _cityRepository.GetCityIdByName(userDto.City, cancellationToken);
             return await _userServices.Create(userDto, cancellationToken);
         }
+
+        public async Task DeActive(int id)
+        {
+            await _userServices.DeActive(id);
+        }
+
+        public async Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken)
+        {
+            return await _userServices.Login(userDto, cancellationToken);
+        }
     }
 }

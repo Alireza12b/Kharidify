@@ -23,5 +23,15 @@ namespace App.Domain.Services
             
             return await _userRepository.Create(userDto, cancellationToken);
         }
+
+        public async Task DeActive(int id)
+        {
+            await _userRepository.DeActive(id);
+        }
+
+        public async Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken)
+        {
+            return await _userRepository.Login(userDto, cancellationToken);
+        }
     }
 }

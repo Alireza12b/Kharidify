@@ -45,6 +45,24 @@ builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
 
 }).AddEntityFrameworkStores<KharidifyDbContext>();
 
+
+var serviceProvider = builder.Services.BuildServiceProvider();
+var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
+
+if (!await roleManager.RoleExistsAsync("Customer"))
+{
+    await roleManager.CreateAsync(new IdentityRole<int>("Customer"));
+}
+if (!await roleManager.RoleExistsAsync("Seller"))
+{
+    await roleManager.CreateAsync(new IdentityRole<int>("Seller"));
+}
+if (!await roleManager.RoleExistsAsync("Admin"))
+{
+    await roleManager.CreateAsync(new IdentityRole<int>("Admin"));
+}
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -24,26 +24,29 @@
                                 <div class="padding_eight_all bg-white">
                                     <div class="heading_s1">
                                         <h1 class="mb-5">ساخت اکانت</h1>
-                                        <p class="mb-30">اکانت دارید ؟ <a href="page-login.html">وارد شوید</a></p>
+                                        <p class="mb-30">اکانت دارید ؟ <a href="~/account/login">وارد شوید</a></p>
                                     </div>
                                     <form method="post" asp-page-handler="Create">
+                                        <div asp-validation-summary="All" class="text-danger"> </div>
                                         <div class="form-group">
-                                            <input type="text" required="" name="firstname" placeholder="نام">
+                                            <input type="text" required name="firstname" placeholder="نام">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" required="" name="lastname" placeholder="نام خانوادگی">
+                                            <input type="text" required name="lastname" placeholder="نام خانوادگی">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" required="" name="phone" placeholder="تلفن">
+                                            <input type="text" required name="phone" placeholder="تلفن">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" required="" name="email" placeholder="ایمیل">
+                                            <input type="email" required name="email" placeholder="ایمیل">
                                         </div>
                                         <div class="form-group">
-                                            <input required="" type="password" name="password" placeholder="رمز عبور">
+                                            <input required type="password" name="password" placeholder="رمز عبور">
+                                            <span asp-validation="password"></span>
                                         </div>
                                         <div class="form-group">
-                                            <input required="" type="password" name="confirmpassword" placeholder="تایید رمز عبور">
+                                            <input required type="password" name="confirmpassword" placeholder="تایید رمز عبور">
+                                            <span asp-validation="ConfirmPassword"></span>
                                         </div>
                                         <div class="form-group">
                                             <label class="">نوع کاربر</label>

@@ -11,5 +11,7 @@ namespace App.Domain.Core.Users.Contracts
     public interface IUserRepository
     {
         Task<IdentityResult> Create(UserDto userDto, CancellationToken cancellationToken);
+        Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken);
+        Task DeActive(int id);
     }
 }
