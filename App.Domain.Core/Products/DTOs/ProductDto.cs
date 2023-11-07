@@ -40,6 +40,8 @@ namespace App.Domain.Core.Products.DTOs
 
         public string Description { get; set; } = null!;
 
+        public DateTime RegisterDate { get; set; }
+
         public int TotalQuantity { get; set; }
 
         public bool IsActive { get; set; }

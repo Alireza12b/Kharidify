@@ -16,6 +16,7 @@ namespace App.Endpoints.RazorPages.UI.ViewModels
             CreateMap<RegisterVM, CityOutputDto>();
             CreateMap<UserVM, CustomerDto>();
             CreateMap<LoginVM, UserDto>();
+            CreateMap<ProductVM, ProductOutputDto>();
         }
     }
 }

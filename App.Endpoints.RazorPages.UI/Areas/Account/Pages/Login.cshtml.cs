@@ -30,7 +30,7 @@ namespace App.Endpoints.RazorPages.UI.Areas.Account.Pages
                 var result = await _userAppServices.Login(_mapper.Map(model, new UserDto()), cancellationToken);
                 if (result.Succeeded)
                 {
-                    return LocalRedirect("~/");
+                    return LocalRedirect("~/index");
                 }
                 ModelState.AddModelError(string.Empty, "ایمیل یا کلمه عبور اشتباه است *");
             }

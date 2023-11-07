@@ -28,18 +28,9 @@ namespace App.Endpoints.RazorPages.UI.Areas.Account.Pages
             _cityServices = cityServices;
         }
 
-        [BindProperty]
-        public List<CityOutputDto> Cities { get; set; }
-
-        [BindProperty]
-        public List<ProvinceOutputDto> Provinces { get; set; }
-
-        [BindProperty]
-        public int SelectedProvinceId { get; set; }
-
         public async Task OnGet(CancellationToken cancellationToken)
         {
-            Provinces = await _provinceServices.GetAll(cancellationToken);
+            
         }
 
 
@@ -51,7 +42,7 @@ namespace App.Endpoints.RazorPages.UI.Areas.Account.Pages
 
                 if (result.Succeeded)
                 {
-                    return Page();
+                    return LocalRedirect("~/index");
                 }
                 else
                 {

@@ -20,6 +20,7 @@ namespace App.Domain.Services
 
         public async Task Create(ProductInputDto productInputDto, CancellationToken cancellationToken)
         {
+            productInputDto.IsActive = false;
             await _repository.Create(productInputDto, cancellationToken);
         }
 
@@ -39,6 +40,15 @@ namespace App.Domain.Services
             {
                 await _repository.Delete(Id, cancellationToken);
             }
+        }
+        public async Task DeActive(int Id, CancellationToken cancellationToken)
+        {
+            await _repository.DeActive(Id, cancellationToken);
+        }
+
+        public async Task Active(int Id, CancellationToken cancellationToken)
+        {
+            await _repository.Active(Id, cancellationToken);
         }
 
         public async Task<List<ProductOutputDto>> GetAll(CancellationToken cancellationToken)

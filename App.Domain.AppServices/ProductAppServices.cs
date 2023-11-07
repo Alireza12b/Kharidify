@@ -41,6 +41,12 @@ namespace App.Domain.AppServices
             }
         }
 
+        public async Task<List<ProductOutputDto>> GetAllDeActives(CancellationToken cancellationToken)
+        {
+            var result = await _productService.GetAll(cancellationToken);
+            return result.Where(x => x.IsActive == false).ToList();
+        }
+
         public async Task<List<ProductOutputDto>> GetAll(CancellationToken cancellationToken)
         {
             return await _productService.GetAll(cancellationToken);
@@ -49,6 +55,16 @@ namespace App.Domain.AppServices
         public async Task<ProductOutputDto> GetById(int Id, CancellationToken cancellationToken)
         {
             return await _productService.GetById(Id, cancellationToken);
+        }
+
+        public async Task DeActive(int Id, CancellationToken cancellationToken)
+        {
+            await _productService.DeActive(Id, cancellationToken);
+        }
+
+        public async Task Active(int Id, CancellationToken cancellationToken)
+        {
+            await _productService.Active(Id, cancellationToken);
         }
     }
 }

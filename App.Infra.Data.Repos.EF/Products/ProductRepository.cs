@@ -45,6 +45,20 @@ namespace App.Infra.Data.Repos.EF.Products
             await _db.SaveChangesAsync(cancellationToken);
         }
 
+        public async Task DeActive(int Id, CancellationToken cancellationToken)
+        {
+            var product = await GetById(Id, cancellationToken);
+            product.IsActive = false;
+            await _db.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task Active(int Id, CancellationToken cancellationToken)
+        {
+            var product = await GetById(Id, cancellationToken);
+            product.IsActive = true;
+            await _db.SaveChangesAsync(cancellationToken);
+        }
+
         public async Task<List<ProductOutputDto>> GetAll(CancellationToken cancellationToken)
         {
             var products = _mapper.Map<List<ProductOutputDto>>(await _db.Products.AsNoTracking().Include(x => x.SubCategories)
