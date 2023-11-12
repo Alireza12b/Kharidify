@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace App.Endpoints.RazorPages.UI.Areas.Admin
+namespace App.Endpoints.RazorPages.UI.Areas.Admin.Pages
 {
     public class AllUsersModel : PageModel
     {

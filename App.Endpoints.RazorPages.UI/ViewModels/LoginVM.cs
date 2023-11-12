@@ -15,6 +15,6 @@ namespace App.Endpoints.RazorPages.UI.ViewModels
         public string? Password { get; set; }
 
 
-        public bool RemomberMe { get; set; }
+        public bool RememberMe { get; set; }
     }
 }

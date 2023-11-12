@@ -78,6 +78,11 @@ namespace App.Infra.Data.Repos.EF.Users
             return await _signInManager.PasswordSignInAsync(userDto.Email, userDto.Password, true, false);
         }
 
+        public async Task<UserDto> GetUser(string email, CancellationToken cancellationToken)
+        {
+            return _mapper.Map<UserDto>(await _userManager.Users.AsNoTracking().Where(x => x.Email == email).FirstOrDefaultAsync(cancellationToken));
+        }
+
         public async Task DeActive(int id)
         {
             var user = await _db.Users.Where(x => x.Id == id).FirstOrDefaultAsync();

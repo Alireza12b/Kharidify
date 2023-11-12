@@ -31,7 +31,13 @@ namespace App.Domain.Services
 
         public async Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken)
         {
-            return await _userRepository.Login(userDto, cancellationToken);
+            var existingUser = await _userRepository.GetUser(userDto.Email, cancellationToken);
+            userDto.IsActive = existingUser.IsActive;
+
+            if (userDto.IsActive)
+                return await _userRepository.Login(userDto, cancellationToken);
+
+            return default;
         }
     }
 }
