@@ -27,14 +27,29 @@ namespace App.Domain.AppServices
             return await _userServices.Create(userDto, cancellationToken);
         }
 
-        public async Task DeActive(int id)
+        public async Task DeActive(int id, CancellationToken cancellationToken)
         {
-            await _userServices.DeActive(id);
+            await _userServices.DeActive(id, cancellationToken);
         }
 
         public async Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken)
         {
             return await _userServices.Login(userDto, cancellationToken);
+        }
+
+        public async Task<List<UserDto>> GetAllUsers(CancellationToken cancellationToken)
+        {
+            return await _userServices.GetAllUsers(cancellationToken);
+        }
+
+        public async Task Active(int id, CancellationToken cancellationToken)
+        {
+            await _userServices.Active(id, cancellationToken);
+        }
+
+        public async Task Delete(int id, CancellationToken cancellationToken)
+        {
+            await _userServices.Delete(id, cancellationToken);
         }
     }
 }

@@ -13,6 +13,10 @@ namespace App.Domain.Core.Users.Contracts
         Task<IdentityResult> Create(UserDto userDto, CancellationToken cancellationToken);
         Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken);
         Task<UserDto> GetUser(string email, CancellationToken cancellationToken);
-        Task DeActive(int id);
+        Task<List<UserDto>> GetAllUsers(CancellationToken cancellationToken);
+        Task DeActive(int id, CancellationToken cancellationToken);
+        Task Active(int id, CancellationToken cancellationToken);
+        Task Delete(int id, CancellationToken cancellationToken);
+
     }
 }

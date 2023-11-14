@@ -14,6 +14,7 @@ namespace App.Domain.AppServices.DipendencyInjections
         public static IServiceCollection AddAppServices(this IServiceCollection services)
         {
             services.AddScoped<IUserAppServices, UserAppServices>();
+            services.AddScoped<IProductAppServices, ProductAppServices>();
             return services;
         }
     }

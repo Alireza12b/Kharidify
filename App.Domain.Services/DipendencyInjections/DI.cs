@@ -16,6 +16,7 @@ namespace App.Domain.Services.DipendencyInjections
             services.AddScoped<IUserServices, UserServices>();
             services.AddScoped<IProvinceServices, ProvinceServices>();
             services.AddScoped<ICityServices, CityServices>();
+            services.AddScoped<IProductServices, ProductServices>();
             return services;
         }
     }

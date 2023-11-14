@@ -8,6 +8,7 @@ namespace App.Endpoints.RazorPages.UI.ViewModels
     {
         public MappingUi()
         {
+            CreateMap<UserDto, UserVM>();
             CreateMap<UserVM, UserDto>();
             CreateMap<CustomerVM, CustomerDto>();
             CreateMap<SellerVM, SellerDto > ();

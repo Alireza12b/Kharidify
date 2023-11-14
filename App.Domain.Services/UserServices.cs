@@ -24,9 +24,9 @@ namespace App.Domain.Services
             return await _userRepository.Create(userDto, cancellationToken);
         }
 
-        public async Task DeActive(int id)
+        public async Task DeActive(int id, CancellationToken cancellationToken)
         {
-            await _userRepository.DeActive(id);
+            await _userRepository.DeActive(id, cancellationToken);
         }
 
         public async Task<SignInResult> Login(UserDto userDto, CancellationToken cancellationToken)
@@ -38,6 +38,21 @@ namespace App.Domain.Services
                 return await _userRepository.Login(userDto, cancellationToken);
 
             return default;
+        }
+
+        public async Task<List<UserDto>> GetAllUsers(CancellationToken cancellationToken)
+        {
+            return await _userRepository.GetAllUsers(cancellationToken);
+        }
+
+        public async Task Active(int id, CancellationToken cancellationToken)
+        {
+            await _userRepository.Active(id, cancellationToken);
+        }
+
+        public async Task Delete(int id, CancellationToken cancellationToken)
+        {
+            await _userRepository.Delete(id, cancellationToken);
         }
     }
 }

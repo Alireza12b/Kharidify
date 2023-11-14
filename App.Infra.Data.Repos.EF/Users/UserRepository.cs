@@ -83,10 +83,30 @@ namespace App.Infra.Data.Repos.EF.Users
             return _mapper.Map<UserDto>(await _userManager.Users.AsNoTracking().Where(x => x.Email == email).FirstOrDefaultAsync(cancellationToken));
         }
 
-        public async Task DeActive(int id)
+        public async Task<List<UserDto>> GetAllUsers(CancellationToken cancellationToken)
         {
-            var user = await _db.Users.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var result = _mapper.Map<List<UserDto>>(await _userManager.Users.AsNoTracking().ToListAsync());
+            return result;
+        }
+
+        public async Task DeActive(int id, CancellationToken cancellationToken)
+        {
+            var user = await _db.Users.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
             user.IsActive = false;
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task Active(int id, CancellationToken cancellationToken)
+        {
+            var user = await _db.Users.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
+            user.IsActive = false;
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task Delete(int id, CancellationToken cancellationToken)
+        {
+            var user = await _db.Users.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
+            user.IsRemoved = true;
             await _db.SaveChangesAsync();
         }
     }

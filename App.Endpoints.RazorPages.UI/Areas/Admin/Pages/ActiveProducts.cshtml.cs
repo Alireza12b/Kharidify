@@ -19,10 +19,10 @@ namespace App.Endpoints.RazorPages.UI.Areas.Admin.Pages
             _productAppServices = productAppServices;
         }
 
-        public async void OnGet(CancellationToken cancellationToken)
+        public async Task OnGet(CancellationToken cancellationToken)
         {
             var results = await _productAppServices.GetAllDeActives(cancellationToken);
-            products = _mapper.Map(results, products);
+            products = _mapper.Map<List<ProductVM>>(results);
         }
 
         public async Task<IActionResult> OnPostActive(int id, CancellationToken cancellationToken)

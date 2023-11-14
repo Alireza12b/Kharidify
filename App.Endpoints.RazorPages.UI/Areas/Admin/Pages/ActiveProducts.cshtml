@@ -15,7 +15,7 @@
                         <div class="product">
                             <div class="product-image">
                                 <div class="product-item active">
-                                    <img src="" alt="product" class="img-fluid w-100">
+                                    <img src="item.Imagepath" alt="product" class="img-fluid w-100">
                                 </div>
                                 <a class="add-wishlist" href="#">
                                     <i class="bi bi-heart-fill text-danger"></i>
@@ -26,7 +26,18 @@
                                 <a href="product-detail.html" class="fw-bold">@item.Name</a>
                                 <p class="text-muted">@item.Description</p>
                                 <span class="d-block fw-bold fs-5 text-secondary">تومان</span>
-                                <a href="product-cart.html" class="btn btn-primary mt-3">افزودن به سبد خرید</a>
+                                @if (!item.IsActive)
+                                {
+                                    <form method="post" asp-page-handler="Active" asp-route-id="@item.Id">
+                                        <button type="submit" class="btn btn-danger mt-3">فعال کردن</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form method="post" asp-page-handler="DeActive" asp-route-id="@item.Id">
+                                        <button type="submit" class="btn btn-success mt-3">غبرفعال کردن</button>
+                                    </form>
+                                }
                             </div>
                         </div>
                     </div>
@@ -34,6 +45,8 @@
             }
 
            
+
+
         </div>
         <div class="row g-3 mb-3">
             <div class="col-md-12">
