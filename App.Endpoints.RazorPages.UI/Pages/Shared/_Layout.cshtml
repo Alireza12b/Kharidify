@@ -123,8 +123,10 @@
                             <ul>
                                 <li><a href="~/account/login/">ورود</a></li>
                                 <li><a href="~/account/register/">ثبت نام</a></li>
-                                <li><a href="page-about.html">درباره ما</a></li>
-                                <li><a href="shop-order.html">پیگیری سفارش</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="~/account/logout/">خروج</a></li>
+                                }
                                 @if (User.IsInRole("Admin"))
                                 {
                                     <li><a href="~/admin/panel">پنل مدیریت</a></li>

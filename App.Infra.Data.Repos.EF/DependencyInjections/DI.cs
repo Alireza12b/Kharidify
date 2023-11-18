@@ -27,6 +27,7 @@ namespace App.Infra.Data.Repos.EF.DependencyInjections
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProvinceRepository, ProvinceRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
 
             return services;
         }

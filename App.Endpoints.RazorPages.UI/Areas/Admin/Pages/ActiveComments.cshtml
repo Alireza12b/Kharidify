@@ -2,3 +2,73 @@
 @model App.Endpoints.RazorPages.UI.Areas.Admin.Pages.ActiveCommentsModel
 @{
 }
+
+
+<div class="body d-flex py-lg-3 py-md-2">
+    <div class="container-xxl">
+        <div class="row align-items-center">
+            <div class="border-0 mb-4">
+                <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
+                    <h3 class="fw-bold mb-0">اطلاعات مشتریان</h3>
+                    <div class="col-auto d-flex w-sm-100">
+                        @* <button type="button" class="btn btn-primary btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#expadd"><i class="icofont-plus-circle me-2 fs-6"></i>اضافه کردن مشتریان</button> *@
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Row end  -->
+        <div class="row clearfix g-3">
+            <div class="col-sm-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>شناسه کاربر</th>
+                                    <th>شناسه کالا</th>
+                                    <th>متن</th>
+                                    <th>تاریخ</th>
+                                    <th>اقدامات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                @foreach (var item in Model.comments)
+                                {
+                                    <tr>
+                                        <td><strong>@item.UserId</strong></td>
+                                        <td>@item.ProductId</td>
+                                        <td>@item.Message</td>
+                                        <td>@item.Date</td>
+
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="مثال اصلی طرح شده">
+                                                @if (!item.IsRemoved)
+                                                {
+                                                    @if (!item.isActive)
+                                                    {
+                                                        <form method="post" asp-page-handler="Active" asp-route-id="@item.Id">
+                                                            <button type="submit" class="btn btn-danger mt-3">فعال کردن</button>
+                                                        </form>
+                                                    }
+                                                    else
+                                                    {
+                                                        <form method="post" asp-page-handler="DeActive" asp-route-id="@item.Id">
+                                                            <button type="submit" class="btn btn-success mt-3">غیرفعال کردن</button>
+                                                        </form>
+                                                    }
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Row End -->
+    </div>
+</div>

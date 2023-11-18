@@ -1,4 +1,5 @@
-﻿using App.Domain.Core.Products.Contracts.Services;
+﻿using App.Domain.Core.Products.Contracts.Repositories;
+using App.Domain.Core.Products.Contracts.Services;
 using App.Domain.Core.Users.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,6 +18,8 @@ namespace App.Domain.Services.DipendencyInjections
             services.AddScoped<IProvinceServices, ProvinceServices>();
             services.AddScoped<ICityServices, CityServices>();
             services.AddScoped<IProductServices, ProductServices>();
+            services.AddScoped<ICommentServices, CommentServices>();
+            services.AddScoped<IShopServices, ShopServices>();
             return services;
         }
     }

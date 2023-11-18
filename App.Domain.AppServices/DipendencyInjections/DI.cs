@@ -15,6 +15,8 @@ namespace App.Domain.AppServices.DipendencyInjections
         {
             services.AddScoped<IUserAppServices, UserAppServices>();
             services.AddScoped<IProductAppServices, ProductAppServices>();
+            services.AddScoped<ICommentAppServices, CommentAppServices>();
+            services.AddScoped<IShopAppServices, ShopAppServices>();
             return services;
         }
     }

@@ -9,13 +9,13 @@ namespace App.Endpoints.RazorPages.UI.ViewModels
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public string? UserName { get; set; } = null!;
-        public string? Phone { get; set; } = null!;
+        public string? PhoneNumber { get; set; } = null!;
         public string? Email { get; set; } = string.Empty;
         public string? Password { get; set; } = string.Empty;
         public bool IsActive { get; set; }
         public bool IsRemoved { get; set; }
         public string? Role { get; set; }
-        public List<string> Roles { get; set; }
+        public IList<string> Roles { get; set; }
         public string? Province { get; set; }
         public string City { get; set; }
         public string? AddressDetail { get; set; }

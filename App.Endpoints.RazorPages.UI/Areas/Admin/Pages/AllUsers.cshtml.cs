@@ -32,6 +32,7 @@ namespace App.Endpoints.RazorPages.UI.Areas.Admin.Pages
             if (ModelState.IsValid)
             {
                 await _userAppServices.Active(id, cancellationToken);
+                return RedirectToPage("AllUsers");
             }
 
             return Page();
@@ -42,6 +43,7 @@ namespace App.Endpoints.RazorPages.UI.Areas.Admin.Pages
             if (ModelState.IsValid)
             {
                 await _userAppServices.DeActive(id, cancellationToken);
+                return RedirectToPage("AllUsers");
             }
 
             return Page();
@@ -52,6 +54,7 @@ namespace App.Endpoints.RazorPages.UI.Areas.Admin.Pages
             if (ModelState.IsValid)
             {
                 await _userAppServices.Delete(id, cancellationToken);
+                return RedirectToPage("AllUsers");
             }
 
             return Page();

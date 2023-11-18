@@ -24,7 +24,7 @@ namespace App.Infra.Data.Repos.EF.Products
 
         public async Task<List<CommentOutputDto>> GetAll(CancellationToken cancellationToken)
         {
-            var result = _mapper.Map<List<CommentOutputDto>>(await _db.Comments.AsNoTracking().ToListAsync(cancellationToken));
+            var result = _mapper.Map<List<CommentOutputDto>>(await _db.Comments.AsNoTracking().Include(x => x.User).Include(y => y.Product).ToListAsync(cancellationToken));
             return result;
         }
 
