@@ -17,6 +17,7 @@ namespace App.Domain.Core.Users.Contracts
         Task DeActive(int id, CancellationToken cancellationToken);
         Task Active(int id, CancellationToken cancellationToken);
         Task Delete(int id, CancellationToken cancellationToken);
+        Task Update(UserDto entity, CancellationToken cancellationToken);
 
     }
 }

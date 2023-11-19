@@ -64,7 +64,7 @@
                                             }
                                         }
                                         <td>@roleName</td>
-                                         
+
                                         <td>
                                             <div class="btn-group" role="group" aria-label="مثال اصلی طرح شده">
                                                 @if (!item.IsRemoved)
@@ -82,7 +82,9 @@
                                                         </form>
                                                     }
 
-                                                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#expedit"><i class="icofont-edit text-success"></i></button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#expedit" onclick="editCustomer('@item.FirstName', '@item.LastName', '@item.Email', '@item.PhoneNumber', '@item.Id')">
+                                                        <i class="icofont-edit text-success"></i>
+                                                    </button>
 
                                                     <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id" class="ms-1">
                                                         <button type="button" class="btn btn-outline-secondary deleterow"><i class="icofont-ui-delete text-danger"></i></button>
@@ -95,6 +97,9 @@
                                             </div>
                                         </td>
                                     </tr>
+
+
+
                                 }
 
 
@@ -106,207 +111,6 @@
         </div><!-- Row End -->
     </div>
 </div>
-
-<!-- Modal Custom Settings-->
-<div class="modal fade right" id="Settingmodal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog  modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">تنظیمات سفارشی</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
-            </div>
-            <div class="modal-body custom_setting">
-                <!-- Settings: Color -->
-                <div class="setting-theme pb-3">
-                    <h6 class="card-title mb-2 fs-6 d-flex align-items-center"><i class="icofont-color-bucket fs-4 me-2 text-primary"></i>تنظیمات رنگ قالب</h6>
-                    <ul class="list-unstyled row row-cols-3 g-2 choose-skin mb-2 mt-2">
-                        <li data-theme="indigo"><div class="indigo"></div></li>
-                        <li data-theme="tradewind"><div class="tradewind"></div></li>
-                        <li data-theme="monalisa"><div class="monalisa"></div></li>
-                        <li data-theme="blue" class="active"><div class="blue"></div></li>
-                        <li data-theme="cyan"><div class="cyan"></div></li>
-                        <li data-theme="green"><div class="green"></div></li>
-                        <li data-theme="orange"><div class="orange"></div></li>
-                        <li data-theme="blush"><div class="blush"></div></li>
-                        <li data-theme="red"><div class="red"></div></li>
-                    </ul>
-                </div>
-                <div class="sidebar-gradient py-3">
-                    <h6 class="card-title mb-2 fs-6 d-flex align-items-center"><i class="icofont-paint fs-4 me-2 text-primary"></i>گرادیان نوار کناری</h6>
-                    <div class="form-check form-switch gradient-switch pt-2 mb-2">
-                        <input class="form-check-input" type="checkbox" id="CheckGradient">
-                        <label class="form-check-label" for="CheckGradient">فعال کردن گرادیان! ( نوار کناری )</label>
-                    </div>
-                </div>
-                <!-- Settings: Template dynamics -->
-                <div class="dynamic-block py-3">
-                    <ul class="list-unstyled choose-skin mb-2 mt-1">
-                        <li data-theme="dynamic"><div class="dynamic"><i class="icofont-paint me-2"></i> برای تنظیمات پویا کلیک کنید</div></li>
-                    </ul>
-                    <div class="dt-setting">
-                        <ul class="list-group list-unstyled mt-1">
-                            <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                <label>رنگ اصلی</label>
-                                <button id="primaryColorPicker" class="btn bg-primary avatar xs border-0 rounded-0"></button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                <label>رنگ ثانویه</label>
-                                <button id="secondaryColorPicker" class="btn bg-secondary avatar xs border-0 rounded-0"></button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                <label class="text-muted">رنگ نمودار 1</label>
-                                <button id="chartColorPicker1" class="btn chart-color1 avatar xs border-0 rounded-0"></button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                <label class="text-muted">رنگ نمودار 2</label>
-                                <button id="chartColorPicker2" class="btn chart-color2 avatar xs border-0 rounded-0"></button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                <label class="text-muted">رنگ نمودار 3</label>
-                                <button id="chartColorPicker3" class="btn chart-color3 avatar xs border-0 rounded-0"></button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                <label class="text-muted">رنگ نمودار 4</label>
-                                <button id="chartColorPicker4" class="btn chart-color4 avatar xs border-0 rounded-0"></button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center py-1 px-2">
-                                <label class="text-muted">رنگ نمودار 5</label>
-                                <button id="chartColorPicker5" class="btn chart-color5 avatar xs border-0 rounded-0"></button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Settings: Font -->
-                <div class="setting-font py-3">
-                    <h6 class="card-title mb-2 fs-6 d-flex align-items-center"><i class="icofont-font fs-4 me-2 text-primary"></i> تنظیمات فونت</h6>
-                    <ul class="list-group font_setting mt-1">
-                        <li class="list-group-item py-1 px-2">
-                            <div class="form-check mb-0">
-                                <input class="form-check-input" type="radio" name="font" id="font-poppins" value="font-poppins">
-                                <label class="form-check-label" for="font-poppins">
-                                    فونت گوگل پاپینس
-                                </label>
-                            </div>
-                        </li>
-                        <li class="list-group-item py-1 px-2">
-                            <div class="form-check mb-0">
-                                <input class="form-check-input" type="radio" name="font" id="font-opensans" value="font-opensans" checked="">
-                                <label class="form-check-label" for="font-opensans">
-                                    فونت گوگل اوپن سانس
-                                </label>
-                            </div>
-                        </li>
-                        <li class="list-group-item py-1 px-2">
-                            <div class="form-check mb-0">
-                                <input class="form-check-input" type="radio" name="font" id="font-montserrat" value="font-montserrat">
-                                <label class="form-check-label" for="font-montserrat">
-                                    فونت گوگل مونت
-                                </label>
-                            </div>
-                        </li>
-                        <li class="list-group-item py-1 px-2">
-                            <div class="form-check mb-0">
-                                <input class="form-check-input" type="radio" name="font" id="font-mukta" value="font-mukta">
-                                <label class="form-check-label" for="font-mukta">
-                                    فونت گوگل موتکا
-                                </label>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Settings: Light/dark -->
-                <div class="setting-mode py-3">
-                    <h6 class="card-title mb-2 fs-6 d-flex align-items-center"><i class="icofont-layout fs-4 me-2 text-primary"></i>چیدمان کنتراست</h6>
-                    <ul class="list-group list-unstyled mb-0 mt-1">
-                        <li class="list-group-item d-flex align-items-center py-1 px-2">
-                            <div class="form-check form-switch theme-switch mb-0">
-                                <input class="form-check-input" type="checkbox" id="theme-switch">
-                                <label class="form-check-label" for="theme-switch">فعال کردن حالت تاریک!</label>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex align-items-center py-1 px-2">
-                            <div class="form-check form-switch theme-high-contrast mb-0">
-                                <input class="form-check-input" type="checkbox" id="theme-high-contrast">
-                                <label class="form-check-label" for="theme-high-contrast">فعال کردن کنتراست بالا</label>
-                            </div>
-                        </li>
-                        <li class="list-group-item d-flex align-items-center py-1 px-2">
-                            <div class="form-check form-switch theme-rtl mb-0">
-                                <input class="form-check-input" type="checkbox" id="theme-rtl">
-                                <label class="form-check-label" for="theme-rtl">فعال کردن حالت چپ چین!</label>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="modal-footer justify-content-start">
-                <button type="button" class="btn btn-white border lift" data-dismiss="modal">بستن</button>
-                <button type="button" class="btn btn-primary lift">ذخیره تنظبمات</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="expadd" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title  fw-bold" id="expaddLabel">اضافه کردن مشتریان</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
-            </div>
-            <div class="modal-body">
-                <div class="deadline-form">
-                    <form>
-                        <div class="row g-3 mb-3">
-                            <div class="col-sm-12">
-                                <label for="item" class="form-label">نام مشتری</label>
-                                <input type="text" class="form-control" id="item">
-                            </div>
-                            <div class="col-sm-12">
-                                <label for="taxtno" class="form-label">مشخصات مشتریان</label>
-                                <input type="File" class="form-control" id="taxtno">
-                            </div>
-                        </div>
-                        <div class="row g-3 mb-3">
-                            <div class="col-sm-6">
-                                <label for="depone" class="form-label">کشور</label>
-                                <input type="text" class="form-control" id="depone">
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="abc" class="form-label">تاریخ ثبت نام مشتریان</label>
-                                <input type="date" class="form-control w-100" id="abc">
-                            </div>
-                        </div>
-                        <div class="row g-3 mb-3">
-                            <div class="col-sm-6">
-                                <label for="abc11" class="form-label">ایمیل</label>
-                                <input type="text" class="form-control" id="abc11">
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="abc111" class="form-label">تلفن</label>
-                                <input type="text" class="form-control" id="abc111">
-                            </div>
-                        </div>
-                        <div class="row g-3 mb-3">
-                            <div class="col-sm-12">
-                                <label class="form-label">کل سفارش</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">تایید</button>
-                <button type="submit" class="btn btn-primary">افزودن</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Edit Customers-->
 <div class="modal fade" id="expedit" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
@@ -315,54 +119,49 @@
                 <h5 class="modal-title  fw-bold" id="expeditLabel"> ویرایش مشتریان</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <form method="post" asp-page-handler="Update">
+                <div class="modal-body">
+                    <div class="deadline-form">
 
-                <div class="deadline-form">
-                    <form>
                         <div class="row g-3 mb-3">
                             <div class="col-sm-12">
-                                <label for="item1" class="form-label">نام مشتری</label>
-                                <input type="text" class="form-control" id="item1" value="لباس">
+                                <label for="item1" class="form-label">نام</label>
+                                <input type="text" class="form-control" id="item1" name="FirstName">
                             </div>
                             <div class="col-sm-12">
-                                <label for="taxtno1" class="form-label">مشخصات مشتریان</label>
-                                <input type="file" class="form-control" id="taxtno1">
-                            </div>
-                        </div>
-                        <div class="row g-3 mb-3">
-                            <div class="col-sm-6">
-                                <label class="form-label">کشور</label>
-                                <input type="text" class="form-control" value="آفریقای جنوبی">
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="abc1" class="form-label">تاریخ ثبت نام مشتریان</label>
-                                <input type="date" class="form-control w-100" id="abc1" value="2021-03-12">
+                                <label for="taxtno1" class="form-label">نام خانوادگی</label>
+                                <input type="text" class="form-control" id="taxtno1" name="LastName">
                             </div>
                         </div>
                         <div class="row g-3 mb-3">
                             <div class="col-sm-6">
                                 <label for="mailid" class="form-label">ایمیل</label>
-                                <input type="text" class="form-control" id="mailid" value="PhilGlover@gmail.com">
+                                <input type="text" class="form-control" id="mailid" name="Email">
                             </div>
                             <div class="col-sm-6">
                                 <label for="phoneid" class="form-label">تلفن</label>
-                                <input type="text" class="form-control" id="phoneid" value="843-555-0175">
+                                <input type="text" class="form-control" id="phoneid" name="PhoneNumber">
+                                <input type="hidden" class="form-control" id="id" name="Id">
                             </div>
                         </div>
-                        <div class="row g-3 mb-3">
-                            <div class="col-sm-6">
-                                <label class="form-label">کل سفارش</label>
-                                <input type="text" class="form-control" value="18">
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">تایید</button>
-                <button type="submit" class="btn btn-primary">ذخیره</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">ذخیره</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+
+<script>
+    function editCustomer(firstName, lastName, email, phoneNumber, id) {
+        // Set values in the modal form fields
+        document.getElementById('item1').value = firstName;
+        document.getElementById('taxtno1').value = lastName;
+        document.getElementById('mailid').value = email;
+        document.getElementById('phoneid').value = phoneNumber;
+        document.getElementById('id').value = id;
+    }
+</script>

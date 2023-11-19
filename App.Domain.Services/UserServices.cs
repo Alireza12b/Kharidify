@@ -40,6 +40,11 @@ namespace App.Domain.Services
             return default;
         }
 
+        public async Task Update(UserDto entity, CancellationToken cancellationToken)
+        {
+            await _userRepository.Update(entity, cancellationToken);
+        }
+
         public async Task<List<UserDto>> GetAllUsers(CancellationToken cancellationToken)
         {
             return await _userRepository.GetAllUsers(cancellationToken);

@@ -41,7 +41,7 @@ namespace App.Infra.Data.Repos.EF.Users
                 UserName = userDto.Email,
                 Email = userDto.Email,
                 PhoneNumber = userDto.PhoneNumber,
-                IsActive = true, 
+                IsActive = true,
                 IsRemoved = false,
             };
 
@@ -54,12 +54,12 @@ namespace App.Infra.Data.Repos.EF.Users
                     PostalCode = userDto.PostalCode,
                 };
             }
-                
+
             if (userDto.Role == "Seller")
             {
                 user.Seller = new Seller
                 {
-                    
+
                 };
             }
 
@@ -81,6 +81,25 @@ namespace App.Infra.Data.Repos.EF.Users
         public async Task<UserDto> GetUser(string email, CancellationToken cancellationToken)
         {
             return _mapper.Map<UserDto>(await _userManager.Users.AsNoTracking().Where(x => x.Email == email).FirstOrDefaultAsync(cancellationToken));
+        }
+
+        public async Task<User> GetUserById(int id, CancellationToken cancellationToken)
+        {
+            return await _userManager.Users.AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
+        }
+
+        public async Task Update(UserDto entity, CancellationToken cancellationToken)
+        {
+            var user = await GetUserById(entity.Id, cancellationToken);
+            if (user != null)
+            {
+                user.FirstName = entity.FirstName;
+                user.LastName = entity.LastName;
+                user.Email = entity.Email;
+                user.PhoneNumber = entity.PhoneNumber;
+                _db.Update(user);
+                await _db.SaveChangesAsync(cancellationToken);
+            }
         }
 
         public async Task<List<UserDto>> GetAllUsers(CancellationToken cancellationToken)
