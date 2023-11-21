@@ -12,7 +12,9 @@ namespace App.Domain.Core.Products.Contracts.Services
         Task Create(ShopInputDto shopInputDto, CancellationToken cancellationToken);
         Task Update(ShopInputDto shopInputDto, CancellationToken cancellationToken);
         Task DeActive(int Id, CancellationToken cancellationToken);
+        Task<ShopOutputDto> GetShopBySellerId(int sellerId, CancellationToken cancellationToken);
         Task<List<ShopOutputDto>> GetAll(CancellationToken cancellationToken);
         Task<ShopOutputDto> GetById(int Id, CancellationToken cancellationToken);
+        Task Active(int Id, CancellationToken cancellationToken);
     }
 }

@@ -20,6 +20,8 @@ namespace App.Domain.Services.DipendencyInjections
             services.AddScoped<IProductServices, ProductServices>();
             services.AddScoped<ICommentServices, CommentServices>();
             services.AddScoped<IShopServices, ShopServices>();
+            services.AddScoped<ICategoryServices, CategoryServices>();
+            services.AddScoped<ISellerServices, SellerServices>();
             return services;
         }
     }

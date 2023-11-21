@@ -11,5 +11,5 @@ public partial class Category
 
     public string ImageAddress { get; set; } = null!;
 
-    public virtual ICollection<SubCategory> SubCategories { get; set; } = new List<SubCategory>();
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

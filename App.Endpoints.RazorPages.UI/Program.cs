@@ -1,6 +1,7 @@
 using App.Domain.AppServices.DipendencyInjections;
 using App.Domain.Core.Users.Entities;
 using App.Domain.Services.DipendencyInjections;
+using App.Endpoints.RazorPages.UI;
 using App.Endpoints.RazorPages.UI.ViewModels;
 using App.Infra.Data.Repos.EF.DependencyInjections;
 using App.Infra.Data.Repos.EF.Mapping;
@@ -11,6 +12,10 @@ using Microsoft.Extensions.Configuration;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var appSettings = builder.Configuration.Get<AppSettings>();
+
+var connectionString = appSettings.ConnectionStrings.DefaultConnection;
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -24,7 +29,7 @@ builder.Services.AddInfrastructure();
 builder.Services.AddServices();
 builder.Services.AddAppServices();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddSingleton(appSettings);
 
 builder.Services.AddDbContext<KharidifyDbContext>(options =>
 {

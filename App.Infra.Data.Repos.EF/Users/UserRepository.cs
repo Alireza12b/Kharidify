@@ -59,7 +59,19 @@ namespace App.Infra.Data.Repos.EF.Users
             {
                 user.Seller = new Seller
                 {
-
+                    Shop = new Shop()
+                    {
+                        ShopName = userDto.ShopName,
+                        Phone = userDto.PhoneNumber,
+                        SellsCount = 0,
+                        PostalCode = userDto.PostalCode,
+                        CityId = userDto.CityId,
+                        AdressDetail = userDto.AddressDetail,
+                        Rank = 0,
+                        RegisterDate = DateTime.Now,
+                        IsActive = false,
+                        IsRemoved = false,
+                    }
                 };
             }
 
@@ -81,6 +93,11 @@ namespace App.Infra.Data.Repos.EF.Users
         public async Task<UserDto> GetUser(string email, CancellationToken cancellationToken)
         {
             return _mapper.Map<UserDto>(await _userManager.Users.AsNoTracking().Where(x => x.Email == email).FirstOrDefaultAsync(cancellationToken));
+        }
+
+        public async Task<UserDto> GetById(int id, CancellationToken cancellationToken)
+        {
+            return _mapper.Map<UserDto>(await _userManager.Users.AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken));
         }
 
         public async Task<User> GetUserById(int id, CancellationToken cancellationToken)

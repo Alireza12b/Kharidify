@@ -158,7 +158,7 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Products.Entities.City", b =>
@@ -171,8 +171,7 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ProvinceId")
                         .HasColumnType("int");
@@ -326,6 +325,9 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -349,17 +351,14 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                     b.Property<int>("ShopId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubCategoriesId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TotalQuantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ShopId");
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("SubCategoriesId");
+                    b.HasIndex("ShopId");
 
                     b.ToTable("Products");
                 });
@@ -404,8 +403,7 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -469,29 +467,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .IsUnique();
 
                     b.ToTable("Shop", (string)null);
-                });
-
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.SubCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CategoriesId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoriesId");
-
-                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Users.Entities.Admin", b =>
@@ -836,8 +811,7 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                 {
                     b.HasOne("App.Domain.Core.Products.Entities.Province", "Province")
                         .WithMany("Cities")
-                        .HasForeignKey("ProvinceId")
-                        .HasConstraintName("FK_Cities_Provinces");
+                        .HasForeignKey("ProvinceId");
 
                     b.Navigation("Province");
                 });
@@ -893,21 +867,21 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Products.Entities.Product", b =>
                 {
+                    b.HasOne("App.Domain.Core.Products.Entities.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .IsRequired()
+                        .HasConstraintName("FK_Products_SubCategories");
+
                     b.HasOne("App.Domain.Core.Products.Entities.Shop", "Shop")
                         .WithMany("Products")
                         .HasForeignKey("ShopId")
                         .IsRequired()
                         .HasConstraintName("FK_Products_Shop");
 
-                    b.HasOne("App.Domain.Core.Products.Entities.SubCategory", "SubCategories")
-                        .WithMany("Products")
-                        .HasForeignKey("SubCategoriesId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Products_SubCategories");
+                    b.Navigation("Category");
 
                     b.Navigation("Shop");
-
-                    b.Navigation("SubCategories");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Products.Entities.ProductsPrice", b =>
@@ -938,17 +912,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                     b.Navigation("City");
 
                     b.Navigation("Seller");
-                });
-
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.SubCategory", b =>
-                {
-                    b.HasOne("App.Domain.Core.Products.Entities.Category", "Categories")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("CategoriesId")
-                        .IsRequired()
-                        .HasConstraintName("FK_SubCategories_Categories");
-
-                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Users.Entities.Admin", b =>
@@ -1055,7 +1018,7 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
             modelBuilder.Entity("App.Domain.Core.Products.Entities.Category", b =>
                 {
-                    b.Navigation("SubCategories");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Products.Entities.City", b =>
@@ -1094,11 +1057,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                 });
 
             modelBuilder.Entity("App.Domain.Core.Products.Entities.Shop", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.SubCategory", b =>
                 {
                     b.Navigation("Products");
                 });

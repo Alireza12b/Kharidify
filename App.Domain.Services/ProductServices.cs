@@ -20,17 +20,7 @@ namespace App.Domain.Services
 
         public async Task Create(ProductInputDto productInputDto, CancellationToken cancellationToken)
         {
-            productInputDto.IsActive = false;
             await _repository.Create(productInputDto, cancellationToken);
-        }
-
-        public async Task Update(ProductInputDto productInputDto, CancellationToken cancellationToken)
-        {
-            var product = await _repository.GetById(productInputDto.Id, cancellationToken);
-            if (product != null)
-            {
-                await _repository.Update(productInputDto, cancellationToken);
-            }
         }
 
         public async Task Delete(int Id, CancellationToken cancellationToken)

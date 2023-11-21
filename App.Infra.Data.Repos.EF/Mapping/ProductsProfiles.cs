@@ -49,10 +49,13 @@ namespace App.Infra.Data.Repos.EF.Mapping
             CreateMap<Shop, ShopOutputDto>();
 
             CreateMap<Category, CategoryOutputDto>();
-            CreateMap<SubCategory, SubCategoryOutputDto>();
             CreateMap<City, CityOutputDto>().ReverseMap();
             CreateMap<Province, ProvinceOutputDto>();
 
+            CreateMap<Seller, SellerDto>();
+            CreateMap<SellerDto, Seller>();
+
+            
 
         }
     }

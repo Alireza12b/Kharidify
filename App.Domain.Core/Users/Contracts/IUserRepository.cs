@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core.Users.DTOs;
+using App.Domain.Core.Users.Entities;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,6 @@ namespace App.Domain.Core.Users.Contracts
         Task Active(int id, CancellationToken cancellationToken);
         Task Delete(int id, CancellationToken cancellationToken);
         Task Update(UserDto entity, CancellationToken cancellationToken);
-
+        Task<UserDto> GetById(int id, CancellationToken cancellationToken);
     }
 }

@@ -1,11 +1,13 @@
 using App.Domain.Core.Products.Contracts.AppServices;
 using App.Endpoints.RazorPages.UI.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace App.Endpoints.RazorPages.UI.Areas.Admin.Pages
 {
+    [Authorize(Roles = "Admin")]
     public class ActiveCommentsModel : PageModel
     {
         private readonly ICommentAppServices _commentAppServices;

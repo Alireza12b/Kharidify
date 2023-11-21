@@ -1044,6 +1044,8 @@
             var postalCodeGroup = $("#postalCodeGroup");
             var addressGroup = $("#addressGroup");
 
+            var shopNameGroup = $('#shopNameGroup')
+
             roleDropdown.on("change", function () {
                 var selectedRole = roleDropdown.val();
 
@@ -1052,7 +1054,16 @@
                     cityGroup.show();
                     postalCodeGroup.show();
                     addressGroup.show();
-                } else {
+                } 
+                else if (selectedRole === "Seller") {
+                    shopNameGroup.show();
+                    provinceGroup.show();
+                    cityGroup.show();
+                    postalCodeGroup.show();
+                    addressGroup.show();
+                } 
+                else {
+                    shopNameGroup.hide();
                     provinceGroup.hide();
                     cityGroup.hide();
                     postalCodeGroup.hide();

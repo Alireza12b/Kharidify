@@ -24,7 +24,7 @@ namespace App.Infra.Data.Repos.EF.Products
 
         public async Task<List<CategoryOutputDto>> GetAll(CancellationToken cancellationToken)
         {
-            var categories = _mapper.Map<List<CategoryOutputDto>>(await _db.Categories.AsNoTracking().Include(x => x.SubCategories)
+            var categories = _mapper.Map<List<CategoryOutputDto>>(await _db.Categories.AsNoTracking()
                 .ToListAsync(cancellationToken));
 
             return categories.ToList();
@@ -32,7 +32,7 @@ namespace App.Infra.Data.Repos.EF.Products
 
         public async Task<CategoryOutputDto> GetById(int Id, CancellationToken cancellationToken)
         {
-            var category = await _db.Categories.AsNoTracking().Include(x => x.SubCategories).Where(p => p.Id == Id).FirstOrDefaultAsync(cancellationToken);
+            var category = await _db.Categories.AsNoTracking().Where(p => p.Id == Id).FirstOrDefaultAsync(cancellationToken);
 
             return _mapper.Map(category, new CategoryOutputDto());
         }

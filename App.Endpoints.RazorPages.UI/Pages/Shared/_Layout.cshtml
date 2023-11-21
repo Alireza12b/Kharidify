@@ -131,6 +131,10 @@
                                 {
                                     <li><a href="~/admin/panel">پنل مدیریت</a></li>
                                 }
+                                @if (User.IsInRole("Seller") || User.IsInRole("Admin"))
+                                {
+                                    <li><a href="~/seller/panel">پنل فروشندگان</a></li>
+                                }
                             </ul>
                         </div>
                     </div>

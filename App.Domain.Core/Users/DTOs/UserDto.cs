@@ -17,6 +17,7 @@ namespace App.Domain.Core.Users.DTOs
         public string? PhoneNumber { get; set; } = null!;
         public string? Email { get; set; } = string.Empty;
         public string? Password { get; set; } = string.Empty;
+        public string? ShopName { get; set; } = string.Empty;
         public bool IsActive { get; set; }
         public bool IsRemoved { get; set; }
         public string? Role { get; set; }

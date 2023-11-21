@@ -25,4 +25,8 @@
     <ProjectReference Include="..\App.Infra.Data.SqlServer.EF\App.Infra.Data.SqlServer.EF.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
 </Project>

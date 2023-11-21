@@ -20,7 +20,7 @@ namespace App.Endpoints.RazorPages.UI.ViewModels
         [Required(ErrorMessage = "{0}را وارد نکرده اید ")]
         [StringLength(16, ErrorMessage = "* شماره همراه صحیح نیست")]
         [Display(Name = "شماره همراه")]
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
 
         [BindProperty]
         [Required(ErrorMessage = "{0}را وارد نکرده اید ")]

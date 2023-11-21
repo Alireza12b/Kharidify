@@ -10,7 +10,6 @@ namespace App.Domain.Core.Products.Contracts.AppServices
     public interface IProductAppServices
     {
         Task Create(ProductInputDto productInputDto, CancellationToken cancellationToken);
-        Task Update(ProductInputDto productInputDto, CancellationToken cancellationToken);
         Task Delete(int Id, CancellationToken cancellationToken);
         Task DeActive(int Id, CancellationToken cancellationToken);
         Task Active(int Id, CancellationToken cancellationToken);

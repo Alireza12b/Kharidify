@@ -45,6 +45,18 @@ namespace App.Infra.Data.Repos.EF.Products
             await _db.SaveChangesAsync(cancellationToken);
         }
 
+        public async Task Active(int Id, CancellationToken cancellationToken)
+        {
+            var shop = await _db.Shops.FindAsync(Id);
+            shop.IsActive = true;
+            await _db.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<ShopOutputDto> GetShopBySellerId(int sellerId, CancellationToken cancellationToken)
+        {
+            return _mapper.Map<ShopOutputDto>(await _db.Shops.AsNoTracking().Where(x => x.SellerId == sellerId).FirstOrDefaultAsync());
+        }
+
         public async Task<List<ShopOutputDto>> GetAll(CancellationToken cancellationToken)
         {
             var shops = _mapper.Map<List<ShopOutputDto>>(await _db.Shops.AsNoTracking().Include(x => x.Products)

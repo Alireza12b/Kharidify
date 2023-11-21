@@ -1,6 +1,7 @@
 ﻿using App.Domain.Core.Products.Contracts.AppServices;
 using App.Domain.Core.Products.Contracts.Services;
 using App.Domain.Core.Products.DTOs;
+using App.Infra.Data.Repos.EF.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,9 @@ namespace App.Domain.AppServices
 
         public async Task Create(ProductInputDto productInputDto, CancellationToken cancellationToken)
         {
-            await _productService.Create(productInputDto, cancellationToken);
-        }
+            productInputDto.ImageAddress = ImageAppServices.UploadProcess(productInputDto.Image);
 
-        public async Task Update(ProductInputDto productInputDto, CancellationToken cancellationToken)
-        {
-            var product = await _productService.GetById(productInputDto.Id, cancellationToken);
-            if (product != null)
-            {
-                await _productService.Update(productInputDto, cancellationToken);
-            }
+            await _productService.Create(productInputDto, cancellationToken);
         }
 
         public async Task Delete(int Id, CancellationToken cancellationToken)

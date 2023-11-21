@@ -42,5 +42,10 @@ namespace App.Domain.AppServices
         {
             return await _shopService.GetById(Id, cancellationToken);
         }
+
+        public async Task Active(int Id, CancellationToken cancellationToken)
+        {
+            await _shopService.Active(Id, cancellationToken);
+        }
     }
 }

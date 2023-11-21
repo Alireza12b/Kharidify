@@ -9,7 +9,7 @@ public partial class Product
 
     public int ShopId { get; set; }
 
-    public int SubCategoriesId { get; set; }
+    public int CategoryId { get; set; }
 
     public string Name { get; set; } = null!;
 
@@ -36,5 +36,5 @@ public partial class Product
 
     public virtual Shop Shop { get; set; } = null!;
 
-    public virtual SubCategory SubCategories { get; set; } = null!;
+    public virtual Category Category { get; set; } = null!;
 }

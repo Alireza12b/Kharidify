@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core.Users.Contracts;
 using App.Domain.Core.Users.DTOs;
+using App.Domain.Core.Users.Entities;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,11 @@ namespace App.Domain.Services
         public async Task<List<UserDto>> GetAllUsers(CancellationToken cancellationToken)
         {
             return await _userRepository.GetAllUsers(cancellationToken);
+        }
+
+        public async Task<UserDto> GetById(int id, CancellationToken cancellationToken)
+        {
+            return  await _userRepository.GetById(id, cancellationToken);
         }
 
         public async Task Active(int id, CancellationToken cancellationToken)

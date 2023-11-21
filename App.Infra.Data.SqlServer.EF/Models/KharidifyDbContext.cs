@@ -58,7 +58,7 @@ public partial class KharidifyDbContext : IdentityDbContext<User, IdentityRole<i
 
     public virtual DbSet<Shop> Shops { get; set; }
 
-    public virtual DbSet<SubCategory> SubCategories { get; set; }
+    public virtual DbSet<Category> SubCategories { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
@@ -142,8 +142,8 @@ public partial class KharidifyDbContext : IdentityDbContext<User, IdentityRole<i
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Products_Shop");
 
-            entity.HasOne(d => d.SubCategories).WithMany(p => p.Products)
-                .HasForeignKey(d => d.SubCategoriesId)
+            entity.HasOne(d => d.Category).WithMany(p => p.Products)
+                .HasForeignKey(d => d.CategoryId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Products_SubCategories");
         });
@@ -175,15 +175,6 @@ public partial class KharidifyDbContext : IdentityDbContext<User, IdentityRole<i
                 .HasConstraintName("FK_Shop_Cities");
         });
 
-        modelBuilder.Entity<SubCategory>(entity =>
-        {
-            entity.Property(e => e.Name).HasMaxLength(50);
-
-            entity.HasOne(d => d.Categories).WithMany(p => p.SubCategories)
-                .HasForeignKey(d => d.CategoriesId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_SubCategories_Categories");
-        });
 
         modelBuilder.Entity<User>(entity =>
         {

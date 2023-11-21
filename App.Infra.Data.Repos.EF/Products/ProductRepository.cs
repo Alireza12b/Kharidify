@@ -25,17 +25,52 @@ namespace App.Infra.Data.Repos.EF.Products
 
         public async Task Create(ProductInputDto productInputDto, CancellationToken cancellationToken)
         {
-            var product = _mapper.Map<Product>(productInputDto);
-            await _db.AddAsync(product, cancellationToken);
-            await _db.SaveChangesAsync(cancellationToken);
-        }
+            List<ProductsPrice> productsPrices = new List<ProductsPrice>();
+            List<Image> images = new List<Image>();
 
-        public async Task Update(ProductInputDto productInputDto, CancellationToken cancellationToken)
-        {
-            var product = await _mapper.ProjectTo<ProductInputDto>(_db.Set<ProductInputDto>())
-                .Where(x => x.Id == productInputDto.Id).FirstOrDefaultAsync();
-            _mapper.Map(productInputDto, product);
-            await _db.SaveChangesAsync(cancellationToken);
+            var product = new Product()
+            {
+                ShopId = productInputDto.ShopId,
+                CategoryId = productInputDto.CategoryId,
+                Name = productInputDto.Name,
+                Description = productInputDto.Description,
+                TotalQuantity = productInputDto.TotalQuantity,
+                IsActive = false,
+                IsRemoved = false,
+            };
+
+
+            productsPrices.Add(new ProductsPrice()
+            {
+                Price = productInputDto.Price,
+                FromDate = DateTime.Now,
+                DiscountPercent = 0,
+            });
+
+
+            images.Add(new Image()
+            {
+                Address = productInputDto.ImageAddress
+            });
+
+
+            product.ProductsPrices = productsPrices;
+            product.Images = images;
+
+            if (productInputDto.IsAuction)
+            {
+                product.Auctions = new Auction()
+                {
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddHours(productInputDto.AuctionTime),
+                    IsRemoved = false,
+                    IsActive = false
+                };
+            }
+
+
+            await _db.AddAsync(product);
+            await _db.SaveChangesAsync();
         }
 
         public async Task Delete(int Id, CancellationToken cancellationToken)
@@ -61,7 +96,7 @@ namespace App.Infra.Data.Repos.EF.Products
 
         public async Task<List<ProductOutputDto>> GetAll(CancellationToken cancellationToken)
         {
-            var products = _mapper.Map<List<ProductOutputDto>>(await _db.Products.AsNoTracking().Include(x => x.SubCategories)
+            var products = _mapper.Map<List<ProductOutputDto>>(await _db.Products.AsNoTracking().Include(x => x.Category).Include(y => y.Images).Include(z => z.ProductsPrices)
                 .ToListAsync(cancellationToken));
 
             return products.ToList();
@@ -69,7 +104,8 @@ namespace App.Infra.Data.Repos.EF.Products
 
         public async Task<ProductOutputDto> GetById(int Id, CancellationToken cancellationToken)
         {
-            var product = await _db.Products.AsNoTracking().Where(p => p.Id == Id).FirstOrDefaultAsync();
+            var product = await _db.Products.AsNoTracking().Include(x => x.Category).Include(y => y.Images).Include(z => z.ProductsPrices)
+                .Where(p => p.Id == Id).FirstOrDefaultAsync();
 
             return _mapper.Map(product, new ProductOutputDto());
         }

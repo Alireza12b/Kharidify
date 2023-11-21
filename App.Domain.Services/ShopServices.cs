@@ -33,6 +33,11 @@ namespace App.Domain.Services
             await _repository.DeActive(Id, cancellationToken);
         }
 
+        public async Task<ShopOutputDto> GetShopBySellerId(int sellerId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetShopBySellerId(sellerId, cancellationToken);
+        }
+
         public async Task<List<ShopOutputDto>> GetAll(CancellationToken cancellationToken)
         {
             return await _repository.GetAll(cancellationToken);
@@ -41,6 +46,11 @@ namespace App.Domain.Services
         public async Task<ShopOutputDto> GetById(int Id, CancellationToken cancellationToken)
         {
             return await _repository.GetById(Id, cancellationToken);
+        }
+
+        public async Task Active(int Id, CancellationToken cancellationToken)
+        {
+            await _repository.Active(Id, cancellationToken);
         }
     }
 }

@@ -4,11 +4,13 @@ using App.Domain.Core.Users.Contracts;
 using App.Domain.Core.Users.DTOs;
 using App.Endpoints.RazorPages.UI.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace App.Endpoints.RazorPages.UI.Areas.Admin.Pages
 {
+    [Authorize(Roles = "Admin")]
     public class AllUsersModel : PageModel
     {
         private readonly IUserAppServices _userAppServices;

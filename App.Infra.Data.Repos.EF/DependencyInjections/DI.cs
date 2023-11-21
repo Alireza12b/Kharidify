@@ -23,11 +23,11 @@ namespace App.Infra.Data.Repos.EF.DependencyInjections
             services.AddScoped<IProductRepository ,ProductRepository>();
             services.AddScoped<IProvinceRepository ,ProvinceRepository>();
             services.AddScoped<IShopRepository ,ShopRepository>();
-            services.AddScoped<ISubCategoryRepository ,SubCategoryRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProvinceRepository, ProvinceRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<ISellerRepository, SellerRepository>();
 
             return services;
         }

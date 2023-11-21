@@ -20,6 +20,11 @@ namespace App.Endpoints.RazorPages.UI.ViewModels
             CreateMap<UserVM, CustomerDto>();
             CreateMap<LoginVM, UserDto>();
             CreateMap<ProductVM, ProductOutputDto>();
+            CreateMap<ProductOutputDto, ProductVM>();
+            CreateMap<CategoryVM, CategoryOutputDto>();
+            CreateMap<CategoryOutputDto, CategoryVM>();
+            CreateMap<ProductInputDto, ProductVM>();
+            CreateMap<ShopOutputDto, ShopVM>();
         }
     }
 }

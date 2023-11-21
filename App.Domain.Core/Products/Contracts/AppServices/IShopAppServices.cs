@@ -14,5 +14,7 @@ namespace App.Domain.Core.Products.Contracts.AppServices
         Task DeActive(int Id, CancellationToken cancellationToken);
         Task<List<ShopOutputDto>> GetAll(CancellationToken cancellationToken);
         Task<ShopOutputDto> GetById(int Id, CancellationToken cancellationToken);
+
+        Task Active(int Id, CancellationToken cancellationToken);
     }
 }
