@@ -43,7 +43,7 @@ namespace App.Endpoints.RazorPages.UI.Areas.Seller.Pages
             if (ModelState.IsValid)
             {
                 //int userId = Convert.ToInt32(HttpContext.User.FindFirstValue("Id"));
-                int userId = 9;
+                var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
                 var seller = await _sellerServices.GetSellerByUserId(userId, cancellationToken);
                 int sellerid = seller.Id;
                 var shop = await _shopServices.GetShopBySellerId(sellerid, cancellationToken);

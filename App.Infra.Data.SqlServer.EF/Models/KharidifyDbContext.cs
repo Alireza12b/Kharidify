@@ -67,19 +67,7 @@ public partial class KharidifyDbContext : IdentityDbContext<User, IdentityRole<i
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
-        modelBuilder.Entity<Cart>(entity =>
-        {
-            entity.Property(e => e.AddressDetail).HasMaxLength(500);
-            entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.IsPaid).HasColumnName("isPaid");
-            entity.Property(e => e.PayDate).HasColumnType("datetime");
-            entity.Property(e => e.Phone).HasMaxLength(11);
-            entity.Property(e => e.PostalCode).HasMaxLength(20);
 
-            entity.HasOne(d => d.City).WithMany(p => p.Carts)
-                .HasForeignKey(d => d.CityId)
-                .HasConstraintName("FK_Carts_Cities");
-        });
 
         modelBuilder.Entity<Category>(entity =>
         {

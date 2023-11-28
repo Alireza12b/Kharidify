@@ -13,5 +13,6 @@ namespace App.Domain.Core.Products.Contracts.Services
         Task Update(OrderLineInputDto orderLineInputDto, CancellationToken cancellationToken);
         Task<List<OrderLineOutputDto>> GetAll(CancellationToken cancellationToken);
         Task<OrderLineOutputDto> GetById(int Id, CancellationToken cancellationToken);
+        Task<CartOutputDto> FindCartByUserId(int userId, CancellationToken cancellationToken);
     }
 }

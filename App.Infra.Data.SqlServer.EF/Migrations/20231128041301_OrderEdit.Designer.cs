@@ -4,6 +4,7 @@ using App.Infra.Data.SqlServer.EF.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infra.Data.SqlServer.EF.Migrations
 {
     [DbContext(typeof(KharidifyDbContext))]
-    partial class KharidifyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231128041301_OrderEdit")]
+    partial class OrderEdit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,6 +101,13 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsPaid")
+                        .HasColumnType("bit")
+                        .HasColumnName("isPaid");
+
+                    b.Property<DateTime?>("PayDate")
+                        .HasColumnType("datetime");
 
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
@@ -259,12 +268,6 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsPaid")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("PayDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -294,6 +297,7 @@ namespace App.Infra.Data.SqlServer.EF.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasMaxLength(400)
                         .HasColumnType("nvarchar(400)");
 

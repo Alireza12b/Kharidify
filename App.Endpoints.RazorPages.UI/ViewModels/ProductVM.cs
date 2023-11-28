@@ -22,6 +22,10 @@
 
         public int AuctionTime { get; set; }
 
+        public string? LastImageAddress { get; set; }
+
+        public double? LastPrice { get; set; }
+
         public IFormFile? Image { get; set; }
     }
 }

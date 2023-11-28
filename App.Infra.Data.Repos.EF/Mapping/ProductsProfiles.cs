@@ -38,6 +38,8 @@ namespace App.Infra.Data.Repos.EF.Mapping
 
             CreateMap<OrderLine, OrderLineInputDto>();
             CreateMap<OrderLine, OrderLineOutputDto>();
+            CreateMap<OrderLineInputDto, OrderLine>();
+            CreateMap<OrderLineOutputDto, OrderLine>();
 
             CreateMap<OrderStatus, OrderStatusInputDto>();
             CreateMap<OrderStatus, OrderStatusOutputDto>();

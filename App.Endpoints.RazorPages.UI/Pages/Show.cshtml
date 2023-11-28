@@ -1,0 +1,173 @@
+﻿@page "/show/{id}"
+@model App.Endpoints.RazorPages.UI.Pages.ShowModel
+@{
+}
+
+
+<main class="main">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" rel="nofollow">صفحه اصلی<i class="fi-rs-home mr-5"></i></a>
+                <span></span> <a href="shop-grid-right.html">فروشگاه</a> <span></span> محصول سایدبار راست
+            </div>
+        </div>
+    </div>
+    <div class="container mb-30">
+        <div class="row">
+            <div class="col-xl-11 col-lg-12 m-auto">
+                <div class="row flex-row-reverse">
+                    <div class="col-xl-9">
+                        <div class="product-detail accordion-detail">
+                            <div class="row mb-50 mt-30">
+                                <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
+                                    <div class="detail-gallery">
+                                        <span class="zoom-icon"><i class="fi-rs-search"></i></span>
+                                        <!-- MAIN SLIDES -->
+                                        <div class="product-image-slider">
+                                            <figure class="border-radius-10">
+                                                <img src="~/img/@Model.products.LastImageAddress" alt="product image">
+                                            </figure>
+                                        </div>
+                                        <!-- THUMBNAILS -->
+                                        <div class="slider-nav-thumbnails">
+                                            <div><img src="~/img/@Model.products.LastImageAddress" alt="product image"></div>
+                                        </div>
+                                    </div>
+                                    <!-- End Gallery -->
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="detail-info pr-30 pl-30">
+                                        <span class="stock-status out-stock"> فروش </span>
+                                        <h2 class="title-detail">@Model.products.Name</h2>
+                                        <div class="product-detail-rating">
+                                        </div>
+                                        <div class="clearfix product-price-cover">
+                                            <div class="product-price primary-color float-left">
+                                                <span class="current-price text-brand">@Model.products.LastPrice تومن</span>
+                                            </div>
+                                        </div>
+                                        <div class="short-desc mb-30">
+                                            <p class="font-lg">@Model.products.Description</p>
+                                        </div>
+                                        <div class="detail-extralink mb-50">
+                                            <form method="post" asp-page-handler="Create">
+                                                <div class="detail-qty border radius">
+                                                    <a href="#" class="qty-down" onclick="changeQuantity(-1)"><i class="fi-rs-angle-small-down"></i></a>
+                                                    <span class="qty-val" id="quantityValue">1</span>
+                                                    <a href="#" class="qty-up" onclick="changeQuantity(1)"><i class="fi-rs-angle-small-up"></i></a>
+                                                    <input type="hidden" name="Quantity" id="quantityInput" value="1" />
+                                                    <input type="hidden" name="ProductId" value="@Model.products.Id" />
+                                                </div>
+                                                <div class="product-extra-link2">
+                                                    <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>افزودن به سبدخرید</button>
+                                                </div>
+                                            </form>
+
+                                            <script>
+                                                function changeQuantity(change) {
+                                                    var quantitySpan = document.getElementById('quantityValue');
+                                                    var quantityInput = document.getElementById('quantityInput');
+
+                                                    var currentQuantity = parseInt(quantitySpan.textContent);
+                                                    var newQuantity = currentQuantity + change;
+
+                                                    if (newQuantity > 0) {
+                                                        quantitySpan.textContent = newQuantity;
+                                                        quantityInput.value = newQuantity;
+                                                    }
+                                                }
+                                            </script>
+                                        </div>
+                                        <div class="font-xs">
+                                            <ul class="mr-50 float-start">
+                                                <li class="mb-5">نوع: <span class="text-brand">ارگانیک</span></li>
+                                                <li class="mb-5">تاریخ:<span class="text-brand"> 14 تیر 1400</span></li>
+                                                <li>گارانتی: <span class="text-brand">70 روز</span></li>
+                                            </ul>
+                                            <ul class="float-start">
+                                                <li class="mb-5">شناسه: <a href="#">FWM15VKT</a></li>
+                                                <li class="mb-5">برچسب: <a href="#" rel="tag">اسنک</a>, <a href="#" rel="tag">ارگانیک</a>, <a href="#" rel="tag">سبز</a></li>
+                                                <li>موجودی:<span class="in-stock text-brand ml-5">8 عدد</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- Detail Info -->
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="tab-style3">
+                                    <ul class="nav nav-tabs text-uppercase">
+                                        <li class="nav-item">
+                                            <a class="nav-link فعال" id="Description-tab" data-bs-toggle="tab" href="#Description">شرح</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">نظرات (3)</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content shop_info_tab entry-main-content">
+                                        <div class="tab-pane fade show active" id="Description">
+                                            <div class="">
+                                                <p>@Model.products.Description</p>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="Reviews">
+                                            <!--Comments-->
+                                            <div class="comments-area">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <h4 class="mb-30">نظرات</h4>
+
+                                                        <div class="comment-list">
+                                                            <div class="single-comment justify-content-between d-flex mb-30">
+                                                                <div class="user justify-content-between d-flex">
+                                                                    <div class="thumb text-center">
+                                                                        <a href="#" class="font-heading text-brand">حس دیزاین</a>
+                                                                    </div>
+                                                                    <div class="desc">
+                                                                        <div class="d-flex justify-content-between mb-10">
+                                                                            <div class="d-flex align-items-center">
+                                                                                <span class="font-xs text-muted">14 تیر 1400 ساعت 3:00 ظهر </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <p class="mb-10">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. <a href="#" class="reply">پاسخ</a></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--comment form-->
+                                            <div class="comment-form">
+                                                <h4 class="mb-15">ارسال نظر</h4>
+                                                <div class="product-rate d-inline-block mb-30"></div>
+                                                <div class="row">
+                                                    <div class="col-lg-8 col-md-12">
+                                                        <form class="form-contact comment_form" action="#" id="commentForm">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="پیام شما"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <button type="submit" class="button button-contactForm">ارسال</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -25,6 +25,13 @@ namespace App.Endpoints.RazorPages.UI.ViewModels
             CreateMap<CategoryOutputDto, CategoryVM>();
             CreateMap<ProductInputDto, ProductVM>();
             CreateMap<ShopOutputDto, ShopVM>();
+            CreateMap<CommentOutputDto, CommentVM>();
+            CreateMap<CategoryOutputDto, CategoryVM>();
+            CreateMap<CategoryVM, CategoryOutputDto>();
+            CreateMap<OrderLineVM, OrderLineInputDto>();
+            CreateMap<OrderLineInputDto, OrderLineVM>();
+            CreateMap<OrderLineVM, OrderLineOutputDto>();
+            CreateMap<OrderLineOutputDto, OrderLineVM>();
         }
     }
 }

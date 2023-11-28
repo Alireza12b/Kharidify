@@ -52,5 +52,12 @@ namespace App.Infra.Data.Repos.EF.Products
 
             return _mapper.Map(cart, new CartOutputDto());
         }
+
+        public async Task<CartOutputDto> GetByCustomerId(int Id, CancellationToken cancellationToken)
+        {
+            var cart = await _db.Carts.AsNoTracking().Include(x => x.OrderLines).Where(p => p.CustomerId == Id).FirstOrDefaultAsync(cancellationToken);
+
+            return _mapper.Map(cart, new CartOutputDto());
+        }
     }
 }

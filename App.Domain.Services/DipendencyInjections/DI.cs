@@ -22,6 +22,9 @@ namespace App.Domain.Services.DipendencyInjections
             services.AddScoped<IShopServices, ShopServices>();
             services.AddScoped<ICategoryServices, CategoryServices>();
             services.AddScoped<ISellerServices, SellerServices>();
+            services.AddScoped<IImageServices, ImageServices>();
+            services.AddScoped<IOrderlineServices, OrderlineServices>();
+
             return services;
         }
     }

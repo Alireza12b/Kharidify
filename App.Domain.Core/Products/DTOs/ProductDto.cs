@@ -57,6 +57,10 @@ namespace App.Domain.Core.Products.DTOs
 
         public bool IsActive { get; set; }
 
+        public string? LastImageAddress { get; set; }
+
+        public double? LastPrice { get; set; }
+
         public virtual ICollection<ProductsPrice> ProductsPrices { get; set; }
 
         public virtual ICollection<Image> Images { get; set; }

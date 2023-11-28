@@ -52,6 +52,13 @@ namespace App.Infra.Data.Repos.EF.Users
                     CityId = userDto.CityId,
                     AddressDetail = userDto.AddressDetail,
                     PostalCode = userDto.PostalCode,
+                    Carts = new Cart()
+                    {
+                        Status = new OrderStatus()
+                        {
+                            
+                        }
+                    }
                 };
             }
 

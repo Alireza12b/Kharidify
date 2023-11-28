@@ -15,6 +15,12 @@ namespace App.Domain.Core.Products.DTOs
         public int ProductId { get; set; }
 
         public int Quantity { get; set; }
+
+        public bool IsPaid { get; set; } = false;
+
+        public DateTime? PayDate { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 
     public class OrderLineOutputDto
@@ -26,5 +32,11 @@ namespace App.Domain.Core.Products.DTOs
         public int ProductId { get; set; }
 
         public int Quantity { get; set; }
+
+        public bool IsPaid { get; set; } = false;
+
+        public DateTime? PayDate { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

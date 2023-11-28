@@ -22,9 +22,9 @@ namespace App.Infra.Data.Repos.EF.Products
             _mapper = mapper;
         }
 
-        public async Task<ImageOutputDto> GetAll(CancellationToken cancellationToken)
+        public async Task<List<ImageOutputDto>> GetAll(CancellationToken cancellationToken)
         {
-            var results = _mapper.Map<ImageOutputDto>(await _db.Images.AsNoTracking().ToListAsync(cancellationToken));
+            var results = _mapper.Map<List<ImageOutputDto>>(await _db.Images.AsNoTracking().ToListAsync(cancellationToken));
             return results;
         }
 

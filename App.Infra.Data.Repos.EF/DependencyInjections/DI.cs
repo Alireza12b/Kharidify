@@ -28,6 +28,9 @@ namespace App.Infra.Data.Repos.EF.DependencyInjections
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<ISellerRepository, SellerRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
+            services.AddScoped<IProductPriceRepository, ProductPriceRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
 
             return services;
         }

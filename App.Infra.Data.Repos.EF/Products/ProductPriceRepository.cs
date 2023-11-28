@@ -25,7 +25,7 @@ namespace App.Infra.Data.Repos.EF.Products
 
         public async Task<ProductPriceOutputDto> GetByProductId(int id, CancellationToken cancellationToken)
         {
-            var result = _mapper.Map<ProductPriceOutputDto>(await _db.ProductsPrices.AsNoTracking().Where(x => x.ProductId == id).LastOrDefaultAsync(cancellationToken));
+            var result = _mapper.Map<ProductPriceOutputDto>(await _db.ProductsPrices.AsNoTracking().Where(x => x.ProductId == id).OrderByDescending(x => x.FromDate).LastAsync(cancellationToken));
             return result;
         }
     }
