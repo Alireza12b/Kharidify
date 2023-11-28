@@ -64,7 +64,7 @@ namespace App.Infra.Data.Repos.EF.Products
         {
             var customer = await _db.Customers.Where(x => x.UserId == userId).FirstOrDefaultAsync(cancellationToken);
             var cart = await _db.Carts.Where(x => x.CustomerId == customer.Id).FirstOrDefaultAsync(cancellationToken);
-            return _mapper.Map<List<OrderLineOutputDto>>(await _db.OrderLines.Where(x=> x.CartId == cart.Id && x.IsPaid == true).FirstOrDefaultAsync(cancellationToken));
+            return _mapper.Map<List<OrderLineOutputDto>>(await _db.OrderLines.Where(x=> x.CartId == cart.Id && x.IsPaid == true).ToListAsync(cancellationToken));
         }
     }
 }
