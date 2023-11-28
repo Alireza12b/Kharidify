@@ -52,5 +52,19 @@ namespace App.Infra.Data.Repos.EF.Products
 
             return _mapper.Map(orderline, new OrderLineOutputDto());
         }
+
+        public async Task DeleteById(int Id, CancellationToken cancellationToken)
+        {
+            var orderline = await _db.OrderLines.Where(p => p.Id == Id).FirstOrDefaultAsync(cancellationToken);
+            orderline.IsDeleted = true;
+            await _db.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<List<OrderLineOutputDto>> GetByUserId(int userId, CancellationToken cancellationToken)
+        {
+            var customer = await _db.Customers.Where(x => x.UserId == userId).FirstOrDefaultAsync(cancellationToken);
+            var cart = await _db.Carts.Where(x => x.CustomerId == customer.Id).FirstOrDefaultAsync(cancellationToken);
+            return _mapper.Map<List<OrderLineOutputDto>>(await _db.OrderLines.Where(x=> x.CartId == cart.Id && x.IsPaid == true).FirstOrDefaultAsync(cancellationToken));
+        }
     }
 }

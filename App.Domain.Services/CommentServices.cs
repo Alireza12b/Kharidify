@@ -24,6 +24,11 @@ namespace App.Domain.Services
              await _commentRepository.Active(id, cancellationToken);
         }
 
+        public async Task Create(CommentInputDto comment, CancellationToken cancellationToken)
+        {
+            await _commentRepository.Create(comment, cancellationToken);
+        }
+
         public async Task Deactive(int id, CancellationToken cancellationToken)
         {
             await _commentRepository.Deactive(id, cancellationToken);

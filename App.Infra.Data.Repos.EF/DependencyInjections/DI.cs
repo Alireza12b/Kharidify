@@ -31,6 +31,7 @@ namespace App.Infra.Data.Repos.EF.DependencyInjections
             services.AddScoped<IImageRepository, ImageRepository>();
             services.AddScoped<IProductPriceRepository, ProductPriceRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IBuyRepository, BuyRepository>();
 
             return services;
         }

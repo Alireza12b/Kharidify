@@ -48,5 +48,15 @@ namespace App.Domain.Services
         {
             return await _repository.GetById(Id, cancellationToken);
         }
+
+        public async Task DeleteById(int Id, CancellationToken cancellationToken)
+        {
+            await _repository.DeleteById(Id, cancellationToken);
+        }
+
+        public async Task <List<OrderLineOutputDto>> GetByUserId(int userId, CancellationToken cancellationToken)
+        {
+            return await _repository.GetByUserId(userId, cancellationToken);
+        }
     }
 }

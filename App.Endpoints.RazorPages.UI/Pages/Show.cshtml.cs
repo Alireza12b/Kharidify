@@ -17,20 +17,27 @@ namespace App.Endpoints.RazorPages.UI.Pages
     {
         private readonly IProductAppServices _productAppServices;
         private readonly IOrderlineServices _orderlineServices;
+        private readonly ICommentServices _commentServices;
         private readonly IMapper _mapper;
+        int productid;
 
-        public ShowModel(IMapper mapper, IProductAppServices productAppServices, IOrderlineServices orderlineServices)
+        public ShowModel(IMapper mapper, IProductAppServices productAppServices, IOrderlineServices orderlineServices, ICommentServices commentServices)
         {
             _mapper = mapper;
             _productAppServices = productAppServices;
             _orderlineServices = orderlineServices;
+            _commentServices = commentServices;
         }
 
         public ProductVM products;
+        public List<CommentVM> comments;
 
         public async Task OnGet(int id, CancellationToken cancellationToken)
         {
+            productid = id;
             products = _mapper.Map<ProductVM>(await _productAppServices.GetById(id, cancellationToken));
+            var commentResult = _mapper.Map<List<CommentVM>>(await _commentServices.GetAll(cancellationToken));
+            comments = _mapper.Map<List<CommentVM>>(commentResult.Where(x => x.ProductId == id).ToList());
         }
 
         public async Task<IActionResult> OnPostCreate(OrderLineVM orderLine, CancellationToken cancellationToken)
@@ -58,6 +65,17 @@ namespace App.Endpoints.RazorPages.UI.Pages
             }
         }
 
-        
+        public async Task<IActionResult> OnPostComment(CommentVM commentVM, CancellationToken cancellationToken)
+        {
+
+
+            var userId = Convert.ToInt32(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            commentVM.UserId = userId;
+            await _commentServices.Create(_mapper.Map<CommentInputDto>(commentVM), cancellationToken);
+
+            return RedirectToPage("Show");
+
+        }
+
     }
 }

@@ -35,6 +35,7 @@ namespace App.Infra.Data.Repos.EF.Mapping
 
             CreateMap<Comment, CommentInputDto>();
             CreateMap<Comment, CommentOutputDto>();
+            CreateMap<CommentInputDto, Comment>();
 
             CreateMap<OrderLine, OrderLineInputDto>();
             CreateMap<OrderLine, OrderLineOutputDto>();

@@ -1,0 +1,114 @@
+﻿@page
+@model App.Endpoints.RazorPages.UI.Pages.profileModel
+@{
+}
+
+
+
+<main class="main pages">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" rel="nofollow">صفحه اصلی<i class="fi-rs-home mr-5"></i></a>
+                <span></span> صفحات <span></span> اکانت من
+            </div>
+        </div>
+    </div>
+    <div class="page-content pt-150 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 m-auto">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="dashboard-menu">
+                                <ul class="nav flex-column" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>داشبورد</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="fi-rs-shopping-bag mr-10"></i>سفارشات</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fi-rs-user mr-10"></i>جزئیات اکانت</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="tab-content account dashboard-content pl-50">
+                                <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="mb-0">سفارشات</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>شناسه کالا</th>
+                                                            <th>تعداد</th>
+                                                            <th>تاریخ پرداخت</th>
+                                                            <th>وضیعت</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        @foreach(var item in Model.orderlines)
+                                                        {
+                                                            <tr>
+                                                                <td>@item.ProductId</td>
+                                                                <td>@item.Quantity</td>
+                                                                <td>@item.PayDate</td>
+                                                                <td>پرداخت شده</td>
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5>جزئیات اکانت</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form method="post" asp-page-handler="Update">
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label>نام <span class="required">*</span></label>
+                                                        <input required="" class="form-control" asp-for="@Model.user.FirstName" name="FirstName" type="text">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>نام خانوادگی <span class="required">*</span></label>
+                                                        <input required="" class="form-control" asp-for="@Model.user.LastName" name="LastName">
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label>تلفن<span class="required">*</span></label>
+                                                        <input required="" class="form-control" asp-for="@Model.user.PhoneNumber" name="PhoneNumber" type="text">
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label>آدرس ایمیل <span class="required">*</span></label>
+                                                        <input required="" class="form-control" asp-for="@Model.user.Email" name="Email" type="email">
+                                                        <input type="hidden" class="form-control" id="id" name="Id">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <button type="submit" class="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">ذخیره تنظیمات</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

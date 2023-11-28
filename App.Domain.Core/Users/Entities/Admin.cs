@@ -7,6 +7,8 @@ public partial class Admin
 {
     public int Id { get; set; }
 
+    public double? Wallet { get; set; }
+
     public int UserId { get; set; }
 
     public virtual User User { get; set; } = null!;

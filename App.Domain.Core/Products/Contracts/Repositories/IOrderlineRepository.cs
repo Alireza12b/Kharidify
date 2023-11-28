@@ -13,5 +13,8 @@ namespace App.Domain.Core.Products.Contracts.Repositories
         Task Update(OrderLineInputDto orderLineInputDto, CancellationToken cancellationToken);
         Task<List<OrderLineOutputDto>> GetAll(CancellationToken cancellationToken);
         Task<OrderLineOutputDto> GetById(int Id, CancellationToken cancellationToken);
+        Task DeleteById(int Id, CancellationToken cancellationToken);
+
+        Task<List<OrderLineOutputDto>> GetByUserId(int userId, CancellationToken cancellationToken);
     }
 }

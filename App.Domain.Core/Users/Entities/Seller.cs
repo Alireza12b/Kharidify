@@ -8,6 +8,8 @@ public partial class Seller
 {
     public int Id { get; set; }
 
+    public double? Wallet { get; set; }
+
     public int UserId { get; set; }
 
     public virtual Shop Shop { get; set; } = null!;

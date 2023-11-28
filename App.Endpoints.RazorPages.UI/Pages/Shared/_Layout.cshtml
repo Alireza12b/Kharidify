@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
 <html lang="fa" dir="rtl" class="rtl">
 <head>
     <meta charset="utf-8">
@@ -248,66 +250,22 @@
                                     </a>
                                     <a href="shop-wishlist.html"><span class="lable">علاقه مندی</span></a>
                                 </div>
+
+
+
                                 <div class="header-action-icon-2">
-                                    <a class="mini-cart-icon" href="shop-cart.html">
+                                    <a class="mini-cart-icon" href="~/cart">
                                         <img alt="Nest" src="~/assets/imgs/theme/icons/icon-cart.svg">
-                                        <span class="pro-count blue">2</span>
                                     </a>
-                                    <a href="shop-cart.html"><span class="lable">سبدخرید</span></a>
-                                    <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                        <ul>
-                                            <li>
-                                                <div class="shopping-cart-img">
-                                                    <a href="shop-product-right.html"><img alt="Nest" src="~/assets/imgs/shop/thumbnail-3.jpg"></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="shop-product-right.html">آب پرتقال</a></h4>
-                                                    <h4><span>1 × </span>80.000 تومان</h4>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="shopping-cart-img">
-                                                    <a href="shop-product-right.html"><img alt="Nest" src="~/assets/imgs/shop/thumbnail-2.jpg"></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="shop-product-right.html">فلفل دلمه ای</a></h4>
-                                                    <h4><span>1 × </span>32.000 تومان</h4>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="shopping-cart-footer">
-                                            <div class="shopping-cart-total">
-                                                <h4>جمع کل: <span>112.000 تومان</span></h4>
-                                            </div>
-                                            <div class="shopping-cart-button">
-                                                <a href="shop-cart.html" class="outline">مشاهده سبد خرید</a>
-                                                <a href="shop-checkout.html">بررسی مجدد</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a href="~/cart"><span class="lable">سبدخرید</span></a>
                                 </div>
+
+
                                 <div class="header-action-icon-2">
                                     <a href="page-account.html">
                                         <img class="svgInject" alt="Nest" src="~/assets/imgs/theme/icons/icon-user.svg">
                                     </a>
-                                    <a href="page-account.html"><span class="lable ml-0">اکانت من</span></a>
-                                    <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
-                                        <ul>
-                                            <li><a href="page-account.html"><i class="fi fi-rs-user mr-10"></i>اکانت من</a></li>
-                                            <li><a href="page-account.html"><i class="fi fi-rs-location-alt mr-10"></i>رهگیری خرید</a></li>
-                                            <li><a href="page-account.html"><i class="fi fi-rs-label mr-10"></i>تخفیف من</a></li>
-                                            <li><a href="shop-wishlist.html"><i class="fi fi-rs-heart mr-10"></i>علاقه مندی</a></li>
-                                            <li><a href="page-account.html"><i class="fi fi-rs-settings-sliders mr-10"></i>تنظیمات</a></li>
-                                            <li><a href="page-login.html"><i class="fi fi-rs-sign-out mr-10"></i>خروج</a></li>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <a href="~/profile"><span class="lable ml-0">اکانت من</span></a>
                                 </div>
                             </div>
                         </div>
@@ -575,43 +533,6 @@
                                     <img alt="Nest" src="~/assets/imgs/theme/icons/icon-cart.svg">
                                     <span class="pro-count white">2</span>
                                 </a>
-                                <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                    <ul>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest" src="~/assets/imgs/shop/thumbnail-3.jpg"></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">آب پرتقال</a></h4>
-                                                <h4><span>1 × </span>80.000 تومان</h4>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest" src="~/assets/imgs/shop/thumbnail-2.jpg"></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">فلفل دلمه ای</a></h4>
-                                                <h4><span>1 × </span>32.000 تومان</h4>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="shopping-cart-footer">
-                                        <div class="shopping-cart-total">
-                                            <h4>جمع کل: <span>112.000 تومان</span></h4>
-                                        </div>
-                                        <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">مشاهده سبد خرید</a>
-                                            <a href="shop-checkout.html">بررسی مجدد</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

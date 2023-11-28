@@ -6,13 +6,13 @@
 
         public string Message { get; set; } = null!;
 
-        public bool isActive { get; set; }
+        public bool isActive { get; set; } = false;
 
-        public bool IsRemoved { get; set; }
+        public bool IsRemoved { get; set; } = false;
 
         public int UserId { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
 
         public int ProductId { get; set; }
     }

@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core.Products.Contracts.Repositories;
 using App.Domain.Core.Products.DTOs;
+using App.Domain.Core.Products.Entities;
 using App.Infra.Data.SqlServer.EF.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace App.Infra.Data.Repos.EF.Products
@@ -20,6 +22,13 @@ namespace App.Infra.Data.Repos.EF.Products
         {
             _db = db;
             _mapper = mapper;
+        }
+
+        public async Task Create(CommentInputDto comment, CancellationToken cancellationToken)
+        {
+            var newcomment = _mapper.Map<Comment>(comment);
+            await _db.AddAsync(newcomment, cancellationToken);
+            await _db.SaveChangesAsync(cancellationToken);
         }
 
         public async Task<List<CommentOutputDto>> GetAll(CancellationToken cancellationToken)

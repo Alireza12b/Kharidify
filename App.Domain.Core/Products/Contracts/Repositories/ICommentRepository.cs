@@ -7,5 +7,6 @@ namespace App.Domain.Core.Products.Contracts.Repositories
         Task Active(int id, CancellationToken cancellationToken);
         Task Deactive(int id, CancellationToken cancellationToken);
         Task<List<CommentOutputDto>> GetAll(CancellationToken cancellationToken);
+        Task Create(CommentInputDto comment, CancellationToken cancellationToken);
     }
 }

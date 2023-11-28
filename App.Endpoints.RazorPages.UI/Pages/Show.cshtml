@@ -118,22 +118,26 @@
                                                     <div class="col-lg-8">
                                                         <h4 class="mb-30">نظرات</h4>
 
+                                                        
                                                         <div class="comment-list">
-                                                            <div class="single-comment justify-content-between d-flex mb-30">
-                                                                <div class="user justify-content-between d-flex">
-                                                                    <div class="thumb text-center">
-                                                                        <a href="#" class="font-heading text-brand">حس دیزاین</a>
-                                                                    </div>
-                                                                    <div class="desc">
-                                                                        <div class="d-flex justify-content-between mb-10">
-                                                                            <div class="d-flex align-items-center">
-                                                                                <span class="font-xs text-muted">14 تیر 1400 ساعت 3:00 ظهر </span>
-                                                                            </div>
+                                                            
+                                                            @foreach (var item in Model.comments)
+                                                            {
+                                                                <div class="single-comment justify-content-between d-flex mb-30">
+                                                                    <div class="user justify-content-between d-flex">
+                                                                        <div class="thumb text-center">
+                                                                            <a href="#" class="font-heading text-brand">کاربر @item.UserId </a>
                                                                         </div>
-                                                                        <p class="mb-10">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. <a href="#" class="reply">پاسخ</a></p>
+                                                                        <div class="desc">
+                                                                            <div class="d-flex justify-content-between mb-10">
+                                                                                <div class="d-flex align-items-center">
+                                                                                </div>
+                                                                            </div>
+                                                                            <p class="mb-10">@item.Message</p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            }
 
                                                         </div>
                                                     </div>
@@ -145,11 +149,13 @@
                                                 <div class="product-rate d-inline-block mb-30"></div>
                                                 <div class="row">
                                                     <div class="col-lg-8 col-md-12">
-                                                        <form class="form-contact comment_form" action="#" id="commentForm">
+                                                        <form method="post" asp-page-handler="Comment">
                                                             <div class="row">
                                                                 <div class="col-12">
                                                                     <div class="form-group">
-                                                                        <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="پیام شما"></textarea>
+                                                                        <textarea class="form-control w-100" name="Message" id="comment" cols="30" rows="9" placeholder="پیام شما"></textarea>
+                                                                        <input type="hidden" name="UserId"/>
+                                                                        <input type="hidden" name="ProductId" value="@Model.products.Id"/>
                                                                     </div>
                                                                 </div>
                                                             </div>

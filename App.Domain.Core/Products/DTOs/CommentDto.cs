@@ -10,8 +10,6 @@ namespace App.Domain.Core.Products.DTOs
 {
     public class CommentInputDto
     {
-        public int Id { get; set; }
-
         public string Message { get; set; } = null!;
 
         public bool isActive { get; set; }

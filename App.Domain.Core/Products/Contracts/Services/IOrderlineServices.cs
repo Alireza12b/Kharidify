@@ -14,5 +14,8 @@ namespace App.Domain.Core.Products.Contracts.Services
         Task<List<OrderLineOutputDto>> GetAll(CancellationToken cancellationToken);
         Task<OrderLineOutputDto> GetById(int Id, CancellationToken cancellationToken);
         Task<CartOutputDto> FindCartByUserId(int userId, CancellationToken cancellationToken);
+        Task DeleteById(int Id, CancellationToken cancellationToken);
+
+        Task<List<OrderLineOutputDto>> GetByUserId(int userId, CancellationToken cancellationToken);
     }
 }
