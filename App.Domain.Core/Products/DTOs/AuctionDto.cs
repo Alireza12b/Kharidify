@@ -36,10 +36,14 @@ namespace App.Domain.Core.Products.DTOs
 
         public double? HighestPrice { get; set; }
 
+        public string? ImagePath { get; set; }
+
         public bool IsActive { get; set; }
 
         public bool IsRemoved { get; set; }
 
         public int? LastBuyerId { get; set; }
+
+        public virtual Product Product { get; set; } = null!;
     }
 }

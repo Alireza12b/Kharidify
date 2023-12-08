@@ -47,10 +47,16 @@ namespace App.Infra.Data.Repos.EF.Products
 
         public async Task<List<AuctionOutputDto>> GetAll(CancellationToken cancellationToken)
         {
-            var auctions = _mapper.Map<List<AuctionOutputDto>>(await _db.Auctions.AsNoTracking()
+            var auctions = _mapper.Map<List<AuctionOutputDto>>(await _db.Auctions.AsNoTracking().Where(x => x.EndDate > DateTime.Now).Include(x=>x.Product)
+                .ThenInclude(y => y.ProductsPrices)
                 .ToListAsync(cancellationToken));
 
             return auctions.ToList();
+        }
+        
+        public async Task BuyAuction(int userId, int auctionId, CancellationToken cancellationToken)
+        {
+
         }
 
         public async Task<AuctionOutputDto> GetById(int Id, CancellationToken cancellationToken)

@@ -25,6 +25,7 @@ namespace App.Domain.Services.DipendencyInjections
             services.AddScoped<IImageServices, ImageServices>();
             services.AddScoped<IOrderlineServices, OrderlineServices>();
             services.AddScoped<IBuyServices, BuyServices>();
+            services.AddScoped<IAuctionServices, AuctionServices>();
 
             return services;
         }

@@ -38,6 +38,10 @@ namespace App.Endpoints.RazorPages.UI.ViewModels
             CreateMap<CommentInputDto, CommentVM>();
             CreateMap<CommentOutputDto, CommentVM>();
             CreateMap<CommentVM, CommentOutputDto>();
+            CreateMap<AuctionVM, AuctionOutputDto>();
+            CreateMap<AuctionOutputDto, AuctionVM>();
+            CreateMap<AuctionVM, AuctionInputDto>();
+            CreateMap<AuctionInputDto, AuctionVM>();
         }
     }
 }

@@ -61,6 +61,7 @@ public partial class KharidifyDbContext : IdentityDbContext<User, IdentityRole<i
     public virtual DbSet<Category> SubCategories { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<AuctionBuyers> AuctionBuyers { get; set; }
 
 
 
