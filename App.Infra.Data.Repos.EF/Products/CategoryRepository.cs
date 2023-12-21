@@ -30,11 +30,11 @@ namespace App.Infra.Data.Repos.EF.Products
             return categories.ToList();
         }
 
-        public async Task<CategoryOutputDto> GetById(int Id, CancellationToken cancellationToken)
+        public async Task<List<ProductOutputDto>> GetById(int Id, CancellationToken cancellationToken)
         {
-            var category = await _db.Categories.AsNoTracking().Where(p => p.Id == Id).FirstOrDefaultAsync(cancellationToken);
+            var product = await _db.Products.AsNoTracking().Where(p => p.CategoryId == Id).ToListAsync(cancellationToken);
 
-            return _mapper.Map(category, new CategoryOutputDto());
+            return _mapper.Map(product, new List<ProductOutputDto>());
         }
     }
 }

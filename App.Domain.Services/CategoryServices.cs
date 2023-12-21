@@ -23,7 +23,7 @@ namespace App.Domain.Services
             return await _categoryRepository.GetAll(cancellationToken);
         }
 
-        public async Task<CategoryOutputDto> GetById(int id, CancellationToken cancellationToken)
+        public async Task<List<ProductOutputDto>> GetById(int id, CancellationToken cancellationToken)
         {
             return await _categoryRepository.GetById(id, cancellationToken);
         }

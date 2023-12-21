@@ -123,11 +123,14 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
                             <ul>
-                                <li><a href="~/account/login/">ورود</a></li>
-                                <li><a href="~/account/register/">ثبت نام</a></li>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="~/account/login/">ورود</a></li>
+                                    <li><a href="~/account/register/">ثبت نام</a></li>
+                                }
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <li><a href="~/account/logout/">خروج</a></li>
+                                    <li><a href="~/logout">خروج</a></li>
                                 }
                                 @if (User.IsInRole("Admin"))
                                 {
@@ -962,5 +965,6 @@
     <!-- Template  JS -->
     <script src="~/assets/js/main48b2.js?v=4.0"></script>
     <script src="~/assets/js/shop48b2.js?v=4.0"></script>
+    @RenderSection("indexScripts")
 </body>
 </html>

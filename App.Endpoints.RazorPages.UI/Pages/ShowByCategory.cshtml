@@ -1,0 +1,72 @@
+﻿@page "/category/{id}"
+@model App.Endpoints.RazorPages.UI.Pages.ShowByCategoryModel
+@{
+}
+<section class="product-tabs section-padding position-relative">
+    <div class="container">
+        <div class="section-title style-2 wow animate__animated animate__fadeIn">
+            <h3>محصولات محبوب</h3>
+            <ul class="nav nav-tabs links" id="myTab" role="tablist">
+            </ul>
+        </div>
+        <!--End nav-tabs-->
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
+                <div class="row product-grid-4">
+                    <!--end product card-->
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".2s">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-page="/show" asp-route-id="@item.Id">
+                                                <img class="default-img" src="~/img/@item.LastImageAddress" alt="">
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/account/login">
+                                                <img class="default-img" src="~/img/@item.LastImageAddress" alt="">
+                                            </a>
+                                        }
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="sale">فروش</span>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    <h2><a href="shop-product-right.html">@item.Name </a></h2>
+                                    <div>
+                                        <span class="font-small text-muted">@item.Description</span>
+                                    </div>
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>@item.LastPrice تومن</span>
+                                        </div>
+                                        <div class="add-cart">
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <a asp-page="/show" asp-route-id="@item.Id"><i class="fi-rs-shopping-cart mr-5"></i>خرید </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/account/login"><i class="fi-rs-shopping-cart mr-5"></i>خرید </a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <!--end product card-->
+                </div>
+                <!--End product-grid-4-->
+            </div>
+        </div>
+        <!--End tab-content-->
+    </div>
+</section>

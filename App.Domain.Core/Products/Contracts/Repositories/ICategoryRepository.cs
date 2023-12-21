@@ -10,6 +10,6 @@ namespace App.Domain.Core.Products.Contracts.Repositories
     public interface ICategoryRepository
     {
         Task<List<CategoryOutputDto>> GetAll(CancellationToken cancellationToken);
-        Task<CategoryOutputDto> GetById(int Id, CancellationToken cancellationToken);
+        Task<List<ProductOutputDto>> GetById(int Id, CancellationToken cancellationToken);
     }
 }
